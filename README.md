@@ -48,7 +48,7 @@ There are a few points of interest:
  
 If instead of a single customer you need multiple it would look like:
 
-```
+```c#
     public IList<Customer> GetMatchingCustomers(string Phrase)
     {
         var Sql =
@@ -62,7 +62,7 @@ If instead of a single customer you need multiple it would look like:
 
 The extension methods can also handle primitive values just as easily:
 
-```
+```c#
     public Customer GetNumberOfCustomers()
     {
         var Sql =
