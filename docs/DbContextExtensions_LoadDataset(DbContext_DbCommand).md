@@ -1,7 +1,7 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.LoadDataset(DbContext, DbCommand) Method
-Execute the provided command and return its results as a classic ADO.NET DataSet.  
-Only provided for migratory purposes. Should be avoided for new code.  
+Execute the provided command and return its results as a classic ADO.NET DataSet.
+Only provided for migratory purposes. Should be avoided for new code.
 ```csharp
 public static System.Data.DataSet LoadDataset(this Microsoft.EntityFrameworkCore.DbContext ctx, System.Data.Common.DbCommand cmd);
 ```

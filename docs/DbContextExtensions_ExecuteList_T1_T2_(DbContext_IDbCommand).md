@@ -1,7 +1,7 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.ExecuteList&lt;T1,T2&gt;(DbContext, IDbCommand) Method
-Execute the provided command and return a tuple of the   
-first two result sets mapped to lists.  
+Execute the provided command and return a tuple of the 
+first two result sets mapped to lists.
 ```csharp
 public static (System.Collections.Generic.IList<T1>,System.Collections.Generic.IList<T2>) ExecuteList<T1,T2>(this Microsoft.EntityFrameworkCore.DbContext ctx, System.Data.IDbCommand cmd);
 ```

@@ -1,7 +1,7 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.ExecuteList&lt;T1,T2,T3,T4,T5,T6&gt;(DbContext, IDbCommand) Method
-Execute the provided command and return a tuple of the   
-first six result sets mapped to lists.  
+Execute the provided command and return a tuple of the 
+first six result sets mapped to lists.
 ```csharp
 public static (System.Collections.Generic.IList<T1>,System.Collections.Generic.IList<T2>,System.Collections.Generic.IList<T3>,System.Collections.Generic.IList<T4>,System.Collections.Generic.IList<T5>,System.Collections.Generic.IList<T6>) ExecuteList<T1,T2,T3,T4,T5,T6>(this Microsoft.EntityFrameworkCore.DbContext ctx, System.Data.IDbCommand cmd);
 ```

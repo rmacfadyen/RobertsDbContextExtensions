@@ -1,7 +1,7 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.ExecuteScalarStream(DbContext, string, object[]) Method
-Execute the provided SQL and return a stream from the database. This is  
-indended for accessing BLOBs stored in the database efficiently.  
+Execute the provided SQL and return a stream from the database. This is
+indended for accessing BLOBs stored in the database efficiently.
 ```csharp
 public static System.IO.Stream ExecuteScalarStream(this Microsoft.EntityFrameworkCore.DbContext ctx, string Sql, params object[] Parameters);
 ```

@@ -1,7 +1,7 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.ExecuteList&lt;T&gt;(DbContext, string, object[]) Method
-Execute the provided SQL and return a tuple of the   
-first result set mapped to lists.  
+Execute the provided SQL and return a tuple of the 
+first result set mapped to lists.
 ```csharp
 public static System.Collections.Generic.IList<T> ExecuteList<T>(this Microsoft.EntityFrameworkCore.DbContext ctx, string Sql, params object[] Parameters);
 ```

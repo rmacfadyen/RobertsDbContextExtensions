@@ -1,33 +1,33 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.ExecuteDynamicList&lt;T&gt;(DbContext, string, IEnumerable&lt;string&gt;, object[]) Method
-A dynamic list is a regular POCO object with one property defined  
-as an object[]. This array will be populated with column values  
-as passed in the DynmaicColumnNames list (in the same order). The  
-other properties on the object will be populated as normal.  
-  
-This is a bit tricky to do, but also surprisingly straight-forward.  
-When we decide whether we're reading a value or an object we now  
-decide between value, dynamic, or object. For dynamic we figure  
-out the FastProperty setter (just once, not once per record) and  
-calculate a mapping between column ordinals (what a DbDataReader  
-operates on) and column names.   
-  
-We then loop through the data reader, populate the regular properties,  
-then pull out any dynamic properties into a list. Finally we assign  
-the list to the fast property for the object[] property.  
-  
-The end result is that we can have a class like:  
-  class MyRecord {  
-    public int i { get; set; }  
-    public object[] values {get; set; }  
-  }  
-and have it populated from a simple query like:  
-  var r = ctx.ExecuteDynamicList<MyRecord>("select i, j, k from tbl", new List<string> { "j", "k" })  
-which populates: r.i, r.values[0], and r.values[1]  
-  
-It is up to the caller to track the order of columns in the object array.  
-This is mostly done for an expected performance gain (duplicating the  
-mapping on every row/instance seems wasteful, even if it's only a reference)  
+A dynamic list is a regular POCO object with one property defined
+as an object[]. This array will be populated with column values
+as passed in the DynmaicColumnNames list (in the same order). The
+other properties on the object will be populated as normal.
+
+This is a bit tricky to do, but also surprisingly straight-forward.
+When we decide whether we're reading a value or an object we now
+decide between value, dynamic, or object. For dynamic we figure
+out the FastProperty setter (just once, not once per record) and
+calculate a mapping between column ordinals (what a DbDataReader
+operates on) and column names. 
+
+We then loop through the data reader, populate the regular properties,
+then pull out any dynamic properties into a list. Finally we assign
+the list to the fast property for the object[] property.
+
+The end result is that we can have a class like:
+  class MyRecord {
+    public int i { get; set; }
+    public object[] values {get; set; }
+  }
+and have it populated from a simple query like:
+  var r = ctx.ExecuteDynamicList<MyRecord>("select i, j, k from tbl", new List<string> { "j", "k" })
+which populates: r.i, r.values[0], and r.values[1]
+
+It is up to the caller to track the order of columns in the object array.
+This is mostly done for an expected performance gain (duplicating the
+mapping on every row/instance seems wasteful, even if it's only a reference)
 ```csharp
 public static System.Collections.Generic.IList<T> ExecuteDynamicList<T>(this Microsoft.EntityFrameworkCore.DbContext ctx, string Sql, System.Collections.Generic.IEnumerable<string> DynamicColumnNames, params object[] Parameters);
 ```

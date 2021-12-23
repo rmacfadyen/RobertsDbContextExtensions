@@ -1,8 +1,8 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.AddParameterValue(IDbCommand, string, DBNull) Method
-Add an IDbDataParameter to the provided command using the specified  
-parameter name and NULL value. The underlying DbType of the parameter  
-is always string.  
+Add an IDbDataParameter to the provided command using the specified
+parameter name and NULL value. The underlying DbType of the parameter
+is always string.
 ```csharp
 public static void AddParameterValue(this System.Data.IDbCommand cmd, string ParameterName, System.DBNull Value);
 ```

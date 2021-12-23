@@ -1,6 +1,6 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.ExecuteNonQuery(DbContext, string, object[]) Method
-Execute the provided SQL and return the number of rows affected.  
+Execute the provided SQL and return the number of rows affected.
 ```csharp
 public static int ExecuteNonQuery(this Microsoft.EntityFrameworkCore.DbContext ctx, string Sql, params object[] Parameters);
 ```

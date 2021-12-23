@@ -1,8 +1,8 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.LoadDataset&lt;T1,T2&gt;(DbContext, DbCommand, string, Action&lt;T1,IList&lt;T2&gt;&gt;, string) Method
-Executes the provided command and returns a list of T1's that  
-have had their child records populated via the provided assignment  
-lambda.   
+Executes the provided command and returns a list of T1's that
+have had their child records populated via the provided assignment
+lambda. 
 ```csharp
 public static System.Collections.Generic.IList<T1> LoadDataset<T1,T2>(this Microsoft.EntityFrameworkCore.DbContext ctx, System.Data.Common.DbCommand cmd, string T1Column, System.Action<T1,System.Collections.Generic.IList<T2>> Assignment, string T2Column=null)
     where T1 : new();

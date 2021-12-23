@@ -1,7 +1,7 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.ExecuteScalar&lt;T&gt;(IDbCommand) Method
-Executes the provided command and returns the first column  
-of the first row of the first result set as an T.  
+Executes the provided command and returns the first column
+of the first row of the first result set as an T.
 ```csharp
 public static T ExecuteScalar<T>(this System.Data.IDbCommand cmd);
 ```

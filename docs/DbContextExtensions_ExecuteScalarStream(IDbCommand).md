@@ -1,7 +1,7 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.ExecuteScalarStream(IDbCommand) Method
-Execute the provided command and return a stream from the database. This is  
-indended for accessing BLOBs stored in the database efficiently.  
+Execute the provided command and return a stream from the database. This is
+indended for accessing BLOBs stored in the database efficiently.
 ```csharp
 public static System.IO.Stream ExecuteScalarStream(this System.Data.IDbCommand cmd);
 ```

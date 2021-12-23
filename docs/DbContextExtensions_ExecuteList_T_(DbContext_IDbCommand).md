@@ -1,7 +1,7 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.ExecuteList&lt;T&gt;(DbContext, IDbCommand) Method
-Execute the provided command and return the result set mapped to  
-an IList<T>.  
+Execute the provided command and return the result set mapped to
+an IList<T>.
 ```csharp
 public static System.Collections.Generic.IList<T> ExecuteList<T>(this Microsoft.EntityFrameworkCore.DbContext ctx, System.Data.IDbCommand cmd);
 ```

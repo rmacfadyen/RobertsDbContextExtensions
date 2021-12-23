@@ -1,7 +1,7 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.AddParameterValue(IDbCommand, string, bool) Method
-Add an IDbDataParameter to the provided command using the specified  
-parameter name and bool value.  
+Add an IDbDataParameter to the provided command using the specified
+parameter name and bool value.
 ```csharp
 public static void AddParameterValue(this System.Data.IDbCommand cmd, string ParameterName, bool Value);
 ```

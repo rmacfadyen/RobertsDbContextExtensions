@@ -1,7 +1,7 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.ExecuteScalar&lt;T&gt;(DbContext, string, object[]) Method
-Execute the provided SQL and return the first column of the first row of  
-the result set.  
+Execute the provided SQL and return the first column of the first row of
+the result set.
 ```csharp
 public static T ExecuteScalar<T>(this Microsoft.EntityFrameworkCore.DbContext ctx, string Sql, params object[] Parameters);
 ```

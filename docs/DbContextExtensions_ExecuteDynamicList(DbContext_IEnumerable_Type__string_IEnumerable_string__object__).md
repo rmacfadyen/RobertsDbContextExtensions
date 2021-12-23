@@ -1,8 +1,8 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.ExecuteDynamicList(DbContext, IEnumerable&lt;Type&gt;, string, IEnumerable&lt;string&gt;, object[]) Method
-When you have a query that consists of several result sets,  
-and the first result contains columns that are not known in   
-advanced, then ExecuteDynamicList is your ticket.  
+When you have a query that consists of several result sets,
+and the first result contains columns that are not known in 
+advanced, then ExecuteDynamicList is your ticket.
 ```csharp
 public static System.Collections.Generic.IList<object> ExecuteDynamicList(this Microsoft.EntityFrameworkCore.DbContext ctx, System.Collections.Generic.IEnumerable<System.Type> Types, string Sql, System.Collections.Generic.IEnumerable<string> DynamicColumnNames=null, params object[] Parameters);
 ```

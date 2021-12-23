@@ -1,7 +1,7 @@
 ### [RobertsDbContextExtensions](RobertsDbContextExtensions 'RobertsDbContextExtensions').[DbContextExtensions](DbContextExtensions 'RobertsDbContextExtensions.DbContextExtensions')
 ## DbContextExtensions.LoadDataTable(DbContext, string) Method
-Executes the provided SQL and returns a classic ADO.NET DataTable.   
-Only provided for migratory purposes. Should be avoided for new code.  
+Executes the provided SQL and returns a classic ADO.NET DataTable. 
+Only provided for migratory purposes. Should be avoided for new code.
 ```csharp
 public static System.Data.DataTable LoadDataTable(this Microsoft.EntityFrameworkCore.DbContext ctx, string Sql);
 ```
