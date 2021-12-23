@@ -70,7 +70,7 @@ namespace RobertsDbContextExtensions
         /// <summary>
         /// Execute the provided SQL and return the number of rows affected.
         /// </summary>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns>The number of rows affected. Zero if no rows where affected or if the query wasn't row related (eg. created a table)</returns>
@@ -89,14 +89,14 @@ namespace RobertsDbContextExtensions
         #region ExecuteScalar from SQL and CMD
 
         /// <summary>
-        /// Execute the provided SQL and return the first column of the first row of
+        /// Execute the provided SQL and return the first row of
         /// the result set.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <typeparam name="T">The type the first result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns></returns>
+        /// <returns>The value of the first column of the first row of the first result set cast as a T.</returns>
         public static T ExecuteScalar<T>(this DbContext ctx, string Sql, params object[] Parameters)
         {
             return ctx.ExecuteReaderFromSql(
@@ -111,10 +111,10 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return the first column of the first row of
         /// the result set.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="ctx">The DbContext to execute the command on</param>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The type the first result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the command on.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <returns>The value of the first column of the first row of the first result set cast as a T.</returns>
         public static T ExecuteScalar<T>(this DbContext ctx, IDbCommand cmd)
         {
             return ctx.ExecuteReaderFromCmd(
@@ -162,12 +162,16 @@ namespace RobertsDbContextExtensions
         /// This is mostly done for an expected performance gain (duplicating the
         /// mapping on every row/instance seems wasteful, even if it's only a reference)
         /// </remarks>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <typeparam name="T">The type the first result set should be mapped to. Must include an object[] property to 
+        /// hold the list of values for the columns from DynamicColumnNames.</typeparam>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
-        /// <param name="DynamicColumnNames"></param>
+        /// <param name="DynamicColumnNames">A list of columns names who's values will populate
+        /// the first object[] property on T.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns></returns>
+        /// <returns>The first result set mapped to a list of T's, with the columns
+        /// specified as dynamic loaded into the first object[] property on T.
+        /// </returns>
         public static IList<T> ExecuteDynamicList<T>(
             this DbContext ctx, string Sql, IEnumerable<string> DynamicColumnNames, params object[] Parameters
         )
@@ -186,12 +190,15 @@ namespace RobertsDbContextExtensions
         /// and the first result contains columns that are not known in 
         /// advanced, then ExecuteDynamicList is your ticket.
         /// </summary>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
-        /// <param name="Types"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
+        /// <param name="Types">A list of Types the query's result sets will be
+        /// mapped to. The first type must have an object[] property to hold
+        /// the dynamic column values.</param>
         /// <param name="Sql">The SQL to be executed.</param>
-        /// <param name="DynamicColumnNames"></param>
+        /// <param name="DynamicColumnNames">A list of columns names who's values will populate
+        /// the first object[] property on T.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns></returns>
+        /// <returns>A list of lists. Each list corresponds to the type from the Types parameter.</returns>
         public static IList<object> ExecuteDynamicList(
             this DbContext ctx,
             IEnumerable<Type> Types,
@@ -237,10 +244,16 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return the result set mapped to
         /// an IList&lt;T&gt;.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="ctx">The DbContext to execute the command on</param>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
+        /// <seealso cref="ExecuteList{T}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, IDbCommand)"/>
+        /// <typeparam name="T">The type the first result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the command on.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <returns>The first result set mapped to a list of T's.</returns>
         public static IList<T> ExecuteList<T>(
             this DbContext ctx, IDbCommand cmd
         )
@@ -257,11 +270,17 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return a tuple of the 
         /// first two result sets mapped to lists.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <param name="ctx">The DbContext to execute the command on</param>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
+        /// <seealso cref="ExecuteList{T}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, IDbCommand)"/>
+        /// <typeparam name="T1">The type the first result set should be mapped to.</typeparam>
+        /// <typeparam name="T2">The type the second result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the command on.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>) ExecuteList<T1, T2>(
             this DbContext ctx, IDbCommand cmd
         )
@@ -284,12 +303,18 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return a tuple of the 
         /// first three result sets mapped to lists.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <typeparam name="T3"></typeparam>
-        /// <param name="ctx">The DbContext to execute the command on</param>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
+        /// <seealso cref="ExecuteList{T}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, IDbCommand)"/>
+        /// <typeparam name="T1">The type the first result set should be mapped to.</typeparam>
+        /// <typeparam name="T2">The type the second result set should be mapped to.</typeparam>
+        /// <typeparam name="T3">The type the third result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the command on.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>) ExecuteList<T1, T2, T3>(
             this DbContext ctx, IDbCommand cmd
         )
@@ -316,13 +341,19 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return a tuple of the 
         /// first four result sets mapped to lists.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <typeparam name="T3"></typeparam>
-        /// <typeparam name="T4"></typeparam>
-        /// <param name="ctx">The DbContext to execute the command on</param>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
+        /// <seealso cref="ExecuteList{T}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, IDbCommand)"/>
+        /// <typeparam name="T1">The type the first result set should be mapped to.</typeparam>
+        /// <typeparam name="T2">The type the second result set should be mapped to.</typeparam>
+        /// <typeparam name="T3">The type the third result set should be mapped to.</typeparam>
+        /// <typeparam name="T4">The type the forth result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the command on.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>) ExecuteList<T1, T2, T3, T4>(
             this DbContext ctx, IDbCommand cmd
         )
@@ -351,14 +382,20 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return a tuple of the 
         /// first five result sets mapped to lists.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <typeparam name="T3"></typeparam>
-        /// <typeparam name="T4"></typeparam>
-        /// <typeparam name="T5"></typeparam>
-        /// <param name="ctx">The DbContext to execute the command on</param>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
+        /// <seealso cref="ExecuteList{T}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, IDbCommand)"/>
+        /// <typeparam name="T1">The type the first result set should be mapped to.</typeparam>
+        /// <typeparam name="T2">The type the second result set should be mapped to.</typeparam>
+        /// <typeparam name="T3">The type the third result set should be mapped to.</typeparam>
+        /// <typeparam name="T4">The type the forth result set should be mapped to.</typeparam>
+        /// <typeparam name="T5">The type the fifth result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the command on.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>) ExecuteList<T1, T2, T3, T4, T5>(
             this DbContext ctx, IDbCommand cmd
         )
@@ -390,15 +427,21 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return a tuple of the 
         /// first six result sets mapped to lists.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <typeparam name="T3"></typeparam>
-        /// <typeparam name="T4"></typeparam>
-        /// <typeparam name="T5"></typeparam>
-        /// <typeparam name="T6"></typeparam>
-        /// <param name="ctx">The DbContext to execute the command on</param>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
+        /// <seealso cref="ExecuteList{T}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, IDbCommand)"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, IDbCommand)"/>
+        /// <typeparam name="T1">The type the first result set should be mapped to.</typeparam>
+        /// <typeparam name="T2">The type the second result set should be mapped to.</typeparam>
+        /// <typeparam name="T3">The type the third result set should be mapped to.</typeparam>
+        /// <typeparam name="T4">The type the forth result set should be mapped to.</typeparam>
+        /// <typeparam name="T5">The type the fifth result set should be mapped to.</typeparam>
+        /// <typeparam name="T6">The type the sixth result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the command on.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>, IList<T6>) ExecuteList<T1, T2, T3, T4, T5, T6>(
             this DbContext ctx, IDbCommand cmd
         )
@@ -438,19 +481,17 @@ namespace RobertsDbContextExtensions
         /// Execute the provided SQL and return a tuple of the 
         /// first result set mapped to lists.
         /// </summary>
-        /// <remarks>
         /// <seealso cref="ExecuteList{T}(DbContext, string, object[])"/>
         /// <seealso cref="ExecuteList{T1, T2}(DbContext, string, object[])"/>
         /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, string, object[])"/>
         /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, string, object[])"/>
         /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, string, object[])"/>
         /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, string, object[])"/>
-        /// </remarks>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <typeparam name="T">The type the first result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns></returns>
+        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
         public static IList<T> ExecuteList<T>(
             this DbContext ctx, string Sql, params object[] Parameters
         )
@@ -467,12 +508,18 @@ namespace RobertsDbContextExtensions
         /// Execute the provided SQL and return a tuple of the 
         /// first two result sets mapped to lists.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <seealso cref="ExecuteList{T}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, string, object[])"/>
+        /// <typeparam name="T1">The type the first result set should be mapped to.</typeparam>
+        /// <typeparam name="T2">The type the second result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns></returns>
+        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>) ExecuteList<T1, T2>(
             this DbContext ctx, string Sql, params object[] Parameters
         )
@@ -497,13 +544,19 @@ namespace RobertsDbContextExtensions
         /// Execute the provided SQL and return a tuple of the 
         /// first three result sets mapped to lists.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <typeparam name="T3"></typeparam>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <seealso cref="ExecuteList{T}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, string, object[])"/>
+        /// <typeparam name="T1">The type the first result set should be mapped to.</typeparam>
+        /// <typeparam name="T2">The type the second result set should be mapped to.</typeparam>
+        /// <typeparam name="T3">The type the third result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns></returns>
+        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>) ExecuteList<T1, T2, T3>(
             this DbContext ctx, string Sql, params object[] Parameters
         )
@@ -531,14 +584,20 @@ namespace RobertsDbContextExtensions
         /// Execute the provided SQL and return a tuple of the 
         /// first four result sets mapped to lists.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <typeparam name="T3"></typeparam>
-        /// <typeparam name="T4"></typeparam>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <seealso cref="ExecuteList{T}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, string, object[])"/>
+        /// <typeparam name="T1">The type the first result set should be mapped to.</typeparam>
+        /// <typeparam name="T2">The type the second result set should be mapped to.</typeparam>
+        /// <typeparam name="T3">The type the third result set should be mapped to.</typeparam>
+        /// <typeparam name="T4">The type the forth result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns></returns>
+        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>) ExecuteList<T1, T2, T3, T4>(
             this DbContext ctx, string Sql, params object[] Parameters
         )
@@ -568,15 +627,21 @@ namespace RobertsDbContextExtensions
         /// Execute the provided SQL and return a tuple of the 
         /// first five result sets mapped to lists.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <typeparam name="T3"></typeparam>
-        /// <typeparam name="T4"></typeparam>
-        /// <typeparam name="T5"></typeparam>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <seealso cref="ExecuteList{T}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, string, object[])"/>
+        /// <typeparam name="T1">The type the first result set should be mapped to.</typeparam>
+        /// <typeparam name="T2">The type the second result set should be mapped to.</typeparam>
+        /// <typeparam name="T3">The type the third result set should be mapped to.</typeparam>
+        /// <typeparam name="T4">The type the forth result set should be mapped to.</typeparam>
+        /// <typeparam name="T5">The type the fifth result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns></returns>
+        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>) ExecuteList<T1, T2, T3, T4, T5>(
              this DbContext ctx, string Sql, params object[] Parameters
          )
@@ -609,16 +674,22 @@ namespace RobertsDbContextExtensions
         /// Execute the provided SQL and return a tuple of the 
         /// first six result sets mapped to lists.
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <typeparam name="T3"></typeparam>
-        /// <typeparam name="T4"></typeparam>
-        /// <typeparam name="T5"></typeparam>
-        /// <typeparam name="T6"></typeparam>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <seealso cref="ExecuteList{T}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, string, object[])"/>
+        /// <typeparam name="T1">The type the first result set should be mapped to.</typeparam>
+        /// <typeparam name="T2">The type the second result set should be mapped to.</typeparam>
+        /// <typeparam name="T3">The type the third result set should be mapped to.</typeparam>
+        /// <typeparam name="T4">The type the forth result set should be mapped to.</typeparam>
+        /// <typeparam name="T5">The type the fifth result set should be mapped to.</typeparam>
+        /// <typeparam name="T6">The type the sixth result set should be mapped to.</typeparam>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns></returns>
+        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>, IList<T6>) ExecuteList<T1, T2, T3, T4, T5, T6>(
             this DbContext ctx, string Sql, params object[] Parameters
         )
@@ -660,7 +731,7 @@ namespace RobertsDbContextExtensions
         /// <param name="ctx">The DbContext used to create the command (will also be used to execute the command on)</param>
         /// <param name="Sql">The SQL the command will execute</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns>Am initialized DbCommand ready for execution. If a transaction
+        /// <returns>An initialized DbCommand ready for execution. If a transaction
         /// is active the command is enrolled in it.</returns>
         public static DbCommand CreateCommand(this DbContext ctx, string Sql, params object[] Parameters)
         {
@@ -735,10 +806,10 @@ namespace RobertsDbContextExtensions
         /// Execute the provided SQL and return a stream from the database. This is
         /// indended for accessing BLOBs stored in the database efficiently.
         /// </summary>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns></returns>
+        /// <returns>A stream that reads directly from the database.</returns>
         public static Stream ExecuteScalarStream(this DbContext ctx, string Sql, params object[] Parameters)
         {
             var cmd = ctx.CreateCommand(Sql, Parameters);
@@ -754,10 +825,11 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return its results as a classic ADO.NET DataSet.
         /// Only provided for migratory purposes. Should be avoided for new code.
         /// </summary>
-        /// <param name="ctx">The DbContext to execute the command on</param>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
-        /// <exception cref="InvalidOperationException"></exception>
+        /// <param name="ctx">The DbContext to execute the command on.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <returns>A filled ADO.NET DataSet object.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the DbContext's underlying provider
+        /// does not support DataAdapters (eg. Sqlite)</exception>
         public static DataSet LoadDataset(this DbContext ctx, DbCommand cmd)
         {
             var cn = ctx.Database.GetDbConnection();
@@ -774,14 +846,18 @@ namespace RobertsDbContextExtensions
         /// have had their child records populated via the provided assignment
         /// lambda. 
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <param name="ctx">The DbContext to execute the command on</param>
-        /// <param name="cmd"></param>
-        /// <param name="T1Column"></param>
-        /// <param name="Assignment"></param>
-        /// <param name="T2Column"></param>
-        /// <returns></returns>
+        /// <typeparam name="T1">The type used to map the first result set.</typeparam>
+        /// <typeparam name="T2">The type used to map the second result set.</typeparam>
+        /// <param name="ctx">The DbContext to execute the command on.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <param name="T1Column">The column name in the first result set that will
+        /// be used to form the parent/child relationship to the second result set.</param>
+        /// <param name="Assignment">A lambda that accepts an list of child records that
+        /// should save the child records in the T1 instance.</param>
+        /// <param name="T2Column">The column name in the second result set that will
+        /// be used to form the parent/child relationship to the first result set. By
+        /// default this is the as T1Column.</param>
+        /// <returns>The first result set mapped to a list of T1's.</returns>
         /// <exception cref="InvalidOperationException"></exception>
         public static IList<T1> LoadDataset<T1, T2>(
             this DbContext ctx,
@@ -939,10 +1015,10 @@ namespace RobertsDbContextExtensions
         /// Executes the provided SQL and returns a classic ADO.NET DataTable. 
         /// Only provided for migratory purposes. Should be avoided for new code.
         /// </summary>
-        /// <param name="ctx">The DbContext to execute the SQL on</param>
-        /// <param name="Sql"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns></returns>
+        /// <returns>A populated ADO.NET DataTable.</returns>
         public static DataTable LoadDataTable(this DbContext ctx, string Sql, params object[] Parameters)
         {
             var cmd = ctx.CreateCommand(Sql, Parameters);
@@ -953,9 +1029,9 @@ namespace RobertsDbContextExtensions
         /// Executes the provided command and returns a classic ADO.NET DataTable. 
         /// Only provided for migratory purposes. Should be avoided for new code.
         /// </summary>
-        /// <param name="ctx">The DbContext to execute the command on</param>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
+        /// <param name="ctx">The DbContext to execute the command on.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <returns>A populated ADO.NET DataTable.</returns>
         public static DataTable LoadDataTable(this DbContext ctx, IDbCommand cmd)
         {
             EnsureConnectionOpen(ctx);
@@ -977,9 +1053,10 @@ namespace RobertsDbContextExtensions
         /// Executes the provided command and returns the first column
         /// of the first row of the first result set as an T.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The type the first column of the first row of the first result set will be cast to.</typeparam>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <returns>The first column
+        /// of the first row of the first result set cast to a T.</returns>
         public static T ExecuteScalar<T>(this IDbCommand cmd)
         {
             var cn = cmd.Connection;
@@ -996,8 +1073,8 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return a stream from the database. This is
         /// indended for accessing BLOBs stored in the database efficiently.
         /// </summary>
-        /// <param name="cmd"></param>
-        /// <returns></returns>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <returns>A stream that reads directly from the database.</returns>
         public static Stream ExecuteScalarStream(this IDbCommand cmd)
         {
             return new ReaderStream(cmd.ExecuteReader(CommandBehavior.SequentialAccess));
@@ -1007,15 +1084,15 @@ namespace RobertsDbContextExtensions
         /// Add an IDbDataParameter to the provided command using the specified
         /// parameter name and object value.
         /// </summary>
-        /// <param name="cmd"></param>
-        /// <param name="ParameterName"></param>
-        /// <param name="Parameter"></param>
-        public static void AddParameterValue(this IDbCommand cmd, string ParameterName, object Parameter)
+        /// <param name="cmd">The command to add the specified parameter to.</param>
+        /// <param name="ParameterName">The name of the parameter (without an @ sign).</param>
+        /// <param name="Value">The value of the parameter, null is changed to DBNull.Value</param>
+        public static void AddParameterValue(this IDbCommand cmd, string ParameterName, object Value)
         {
             var p = cmd.CreateParameter();
             p.ParameterName = ParameterName;
-            p.DbType = Parameter == null ? DbType.String : typeMap[Parameter.GetType()];
-            p.Value = Parameter ?? DBNull.Value;
+            p.DbType = Value == null ? DbType.String : typeMap[Value.GetType()];
+            p.Value = Value ?? DBNull.Value;
             cmd.Parameters.Add(p);
         }
 
@@ -1023,9 +1100,9 @@ namespace RobertsDbContextExtensions
         /// Add an IDbDataParameter to the provided command using the specified
         /// parameter name and int value.
         /// </summary>
-        /// <param name="cmd"></param>
-        /// <param name="ParameterName"></param>
-        /// <param name="Value"></param>
+        /// <param name="cmd">The command to add the specified parameter to.</param>
+        /// <param name="ParameterName">The name of the parameter (without an @ sign).</param>
+        /// <param name="Value">The value of the parameter.</param>
         public static void AddParameterValue(this IDbCommand cmd, string ParameterName, int Value)
         {
             var p = cmd.CreateParameter();
@@ -1039,9 +1116,9 @@ namespace RobertsDbContextExtensions
         /// Add an IDbDataParameter to the provided command using the specified
         /// parameter name and bool value.
         /// </summary>
-        /// <param name="cmd"></param>
-        /// <param name="ParameterName"></param>
-        /// <param name="Value"></param>
+        /// <param name="cmd">The command to add the specified parameter to.</param>
+        /// <param name="ParameterName">The name of the parameter (without an @ sign).</param>
+        /// <param name="Value">The value of the parameter.</param>
         public static void AddParameterValue(this IDbCommand cmd, string ParameterName, bool Value)
         {
             var p = cmd.CreateParameter();
@@ -1056,9 +1133,14 @@ namespace RobertsDbContextExtensions
         /// parameter name and NULL value. The underlying DbType of the parameter
         /// is always string.
         /// </summary>
-        /// <param name="cmd"></param>
-        /// <param name="ParameterName"></param>
-        /// <param name="Value"></param>
+        /// <remarks>
+        /// In certain situations it can be tricky to correctly pass a NULL value
+        /// as a parameter via code. This method allows for explicitly adding a
+        /// string parameter will a NULL value.
+        /// </remarks>
+        /// <param name="cmd">The command to add the specified parameter to.</param>
+        /// <param name="ParameterName">The name of the parameter (without an @ sign).</param>
+        /// <param name="Value">Must be DBNull.Value</param>
         public static void AddParameterValue(this IDbCommand cmd, string ParameterName, DBNull Value)
         {
             var p = cmd.CreateParameter();
@@ -1072,9 +1154,9 @@ namespace RobertsDbContextExtensions
         /// Add an IDbDataParameter to the provided command using the specified
         /// parameter name and string value. Null strings are passed as DbNull.Value.
         /// </summary>
-        /// <param name="cmd"></param>
-        /// <param name="ParameterName"></param>
-        /// <param name="Value"></param>
+        /// <param name="cmd">The command to add the specified parameter to.</param>
+        /// <param name="ParameterName">The name of the parameter (without an @ sign).</param>
+        /// <param name="Value">The value of the parameter, null will be changed to DBNull.Value.</param>
         public static void AddParameterValue(this IDbCommand cmd, string ParameterName, string Value)
         {
             var p = cmd.CreateParameter();

@@ -8,10 +8,14 @@ public static T ExecuteScalar<T>(this System.Data.IDbCommand cmd);
 #### Type parameters
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteScalar_T_(System_Data_IDbCommand)_T'></a>
 `T`  
+The type the first column of the first row of the first result set will be cast to.
   
 #### Parameters
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteScalar_T_(System_Data_IDbCommand)_cmd'></a>
 `cmd` [System.Data.IDbCommand](https://docs.microsoft.com/en-us/dotnet/api/System.Data.IDbCommand 'System.Data.IDbCommand')  
+The command to be executed.
   
 #### Returns
 [T](DbContextExtensions_ExecuteScalar_T_(IDbCommand)#RobertsDbContextExtensions_DbContextExtensions_ExecuteScalar_T_(System_Data_IDbCommand)_T 'RobertsDbContextExtensions.DbContextExtensions.ExecuteScalar&lt;T&gt;(System.Data.IDbCommand).T')  
+The first column
+            of the first row of the first result set cast to a T.

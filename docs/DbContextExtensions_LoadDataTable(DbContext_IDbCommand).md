@@ -8,10 +8,12 @@ public static System.Data.DataTable LoadDataTable(this Microsoft.EntityFramework
 #### Parameters
 <a name='RobertsDbContextExtensions_DbContextExtensions_LoadDataTable(Microsoft_EntityFrameworkCore_DbContext_System_Data_IDbCommand)_ctx'></a>
 `ctx` [Microsoft.EntityFrameworkCore.DbContext](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.EntityFrameworkCore.DbContext 'Microsoft.EntityFrameworkCore.DbContext')  
-The DbContext to execute the command on
+The DbContext to execute the command on.
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_LoadDataTable(Microsoft_EntityFrameworkCore_DbContext_System_Data_IDbCommand)_cmd'></a>
 `cmd` [System.Data.IDbCommand](https://docs.microsoft.com/en-us/dotnet/api/System.Data.IDbCommand 'System.Data.IDbCommand')  
+The command to be executed.
   
 #### Returns
 [System.Data.DataTable](https://docs.microsoft.com/en-us/dotnet/api/System.Data.DataTable 'System.Data.DataTable')  
+A populated ADO.NET DataTable.

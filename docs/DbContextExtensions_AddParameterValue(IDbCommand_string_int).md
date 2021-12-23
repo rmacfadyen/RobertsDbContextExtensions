@@ -8,10 +8,13 @@ public static void AddParameterValue(this System.Data.IDbCommand cmd, string Par
 #### Parameters
 <a name='RobertsDbContextExtensions_DbContextExtensions_AddParameterValue(System_Data_IDbCommand_string_int)_cmd'></a>
 `cmd` [System.Data.IDbCommand](https://docs.microsoft.com/en-us/dotnet/api/System.Data.IDbCommand 'System.Data.IDbCommand')  
+The command to add the specified parameter to.
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_AddParameterValue(System_Data_IDbCommand_string_int)_ParameterName'></a>
 `ParameterName` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+The name of the parameter (without an @ sign).
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_AddParameterValue(System_Data_IDbCommand_string_int)_Value'></a>
 `Value` [System.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System.Int32')  
+The value of the parameter.
   

@@ -8,6 +8,8 @@ public static System.IO.Stream ExecuteScalarStream(this System.Data.IDbCommand c
 #### Parameters
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteScalarStream(System_Data_IDbCommand)_cmd'></a>
 `cmd` [System.Data.IDbCommand](https://docs.microsoft.com/en-us/dotnet/api/System.Data.IDbCommand 'System.Data.IDbCommand')  
+The command to be executed.
   
 #### Returns
 [System.IO.Stream](https://docs.microsoft.com/en-us/dotnet/api/System.IO.Stream 'System.IO.Stream')  
+A stream that reads directly from the database.

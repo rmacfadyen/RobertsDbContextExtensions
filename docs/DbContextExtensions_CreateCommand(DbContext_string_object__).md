@@ -19,5 +19,5 @@ A list of values to be passed as parameters. See [Passing parameters](https://gi
   
 #### Returns
 [System.Data.Common.DbCommand](https://docs.microsoft.com/en-us/dotnet/api/System.Data.Common.DbCommand 'System.Data.Common.DbCommand')  
-Am initialized DbCommand ready for execution. If a transaction
+An initialized DbCommand ready for execution. If a transaction
             is active the command is enrolled in it.

@@ -8,7 +8,7 @@ public static System.IO.Stream ExecuteScalarStream(this Microsoft.EntityFramewor
 #### Parameters
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteScalarStream(Microsoft_EntityFrameworkCore_DbContext_string_object__)_ctx'></a>
 `ctx` [Microsoft.EntityFrameworkCore.DbContext](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.EntityFrameworkCore.DbContext 'Microsoft.EntityFrameworkCore.DbContext')  
-The DbContext to execute the SQL on
+The DbContext to execute the SQL on.
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteScalarStream(Microsoft_EntityFrameworkCore_DbContext_string_object__)_Sql'></a>
 `Sql` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
@@ -20,3 +20,4 @@ A list of values to be passed as parameters. See [Passing parameters](https://gi
   
 #### Returns
 [System.IO.Stream](https://docs.microsoft.com/en-us/dotnet/api/System.IO.Stream 'System.IO.Stream')  
+A stream that reads directly from the database.
