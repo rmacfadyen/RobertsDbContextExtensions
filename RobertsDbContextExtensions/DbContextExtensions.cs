@@ -95,7 +95,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T"></typeparam>
         /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql">The SQL to be executed.</param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md"/></param>
         /// <returns></returns>
         public static T ExecuteScalar<T>(this DbContext ctx, string Sql, params object[] Parameters)
         {
