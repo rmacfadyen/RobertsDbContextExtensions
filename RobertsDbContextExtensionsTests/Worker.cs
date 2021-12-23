@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RobertsDbContextExtensions;
+using System.Collections.Generic;
 
 namespace RobertsDbContextExtensionsTests
 {
@@ -26,5 +27,14 @@ namespace RobertsDbContextExtensionsTests
                 ";
             return ctx.ExecuteScalar<Customer>(Sql, new { CustomerId });
         }
+
+        public (IList<Customer> Good, IList<Customer> Bad) GetGoodAndBadCustomer()
+        {
+            var Sql =
+                @"select CustomerId, CustomerName from Customers where Good = 1
+            select CustomerId, CustomerName from Customers where Good <> 1";
+            return ctx.ExecuteList<Customer, Customer>(Sql);
+        }
+
     }
 }
