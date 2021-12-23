@@ -1,7 +1,11 @@
 ## Robert's DbContext Extensions
 
-If you just need to load some data from a database server into
-a plain old C# object then you're in the right place.
+If you just need to read data from a database server via Entity Framework Core (EFCore) 
+into arbitrary plain old C# objects (POCO) then you're in the right place.
+
+If you just need to execute arbitrary SQL statements on a database server via EFCore
+then you're in the right place.
+
 
 ### Sample Code
 Here's how you would read a single record from a Customer table:
@@ -87,6 +91,30 @@ query you can:
         return ctx.ExecuteList<Customer, Customer>(Sql);
     }
 ```
+
+Execute arbitrary SQL (to alter a table, delete rows, insert rows, etc):
+```c#
+    public void AddColumnToCustomerTable()
+    {
+        var Sql = @"alter table Customers add NewColumn nvarchar(max) not null";
+        return ctx.ExecuteNonQuery(Sql);
+    }
+
+    public bool DeleteCustomer(int CustomerId)
+    {
+        var Sql = @"delete from Customers where CustomerId = @CustomerId";
+        var RowsAffected = ctx.ExecuteNonQuery(Sql, { CustomerId });
+        return RowsAffected <> 0;
+    }
+
+    public bool AddCustomer(int CustomerId, string CustomerName)
+    {
+        var Sql = @"insert into Customers (CustomerId, CustomerName) values (@CustomerId, @CustomerName)";
+        var RowsAffected = ctx.ExecuteNonQuery(Sql, { CustomerId, CustomerName });
+        return RowsAffected <> 0;
+    }
+```
+
 
 ### Documentation
 
