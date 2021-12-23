@@ -15,6 +15,7 @@ public static (System.Collections.Generic.IList<T1>,System.Collections.Generic.I
 #### Parameters
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteList_T1_T2_(Microsoft_EntityFrameworkCore_DbContext_System_Data_IDbCommand)_ctx'></a>
 `ctx` [Microsoft.EntityFrameworkCore.DbContext](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.EntityFrameworkCore.DbContext 'Microsoft.EntityFrameworkCore.DbContext')  
+The DbContext to execute the command on
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteList_T1_T2_(Microsoft_EntityFrameworkCore_DbContext_System_Data_IDbCommand)_cmd'></a>
 `cmd` [System.Data.IDbCommand](https://docs.microsoft.com/en-us/dotnet/api/System.Data.IDbCommand 'System.Data.IDbCommand')  

@@ -4,7 +4,31 @@ A dynamic list is a regular POCO object with one property defined
 as an object[]. This array will be populated with column values
 as passed in the DynmaicColumnNames list (in the same order). The
 other properties on the object will be populated as normal.
-
+```csharp
+public static System.Collections.Generic.IList<T> ExecuteDynamicList<T>(this Microsoft.EntityFrameworkCore.DbContext ctx, string Sql, System.Collections.Generic.IEnumerable<string> DynamicColumnNames, params object[] Parameters);
+```
+#### Type parameters
+<a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_T'></a>
+`T`  
+  
+#### Parameters
+<a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_ctx'></a>
+`ctx` [Microsoft.EntityFrameworkCore.DbContext](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.EntityFrameworkCore.DbContext 'Microsoft.EntityFrameworkCore.DbContext')  
+The DbContext to execute the SQL on
+  
+<a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_Sql'></a>
+`Sql` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+The SQL to be executed.
+  
+<a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_DynamicColumnNames'></a>
+`DynamicColumnNames` [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')  
+  
+<a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_Parameters'></a>
+`Parameters` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+  
+#### Returns
+[System.Collections.Generic.IList&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')[T](DbContextExtensions_ExecuteDynamicList_T_(DbContext_string_IEnumerable_string__object__)#RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_T 'RobertsDbContextExtensions.DbContextExtensions.ExecuteDynamicList&lt;T&gt;(Microsoft.EntityFrameworkCore.DbContext, string, System.Collections.Generic.IEnumerable&lt;string&gt;, object[]).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')  
+### Remarks
 This is a bit tricky to do, but also surprisingly straight-forward.
 When we decide whether we're reading a value or an object we now
 decide between value, dynamic, or object. For dynamic we figure
@@ -28,25 +52,3 @@ which populates: r.i, r.values[0], and r.values[1]
 It is up to the caller to track the order of columns in the object array.
 This is mostly done for an expected performance gain (duplicating the
 mapping on every row/instance seems wasteful, even if it's only a reference)
-```csharp
-public static System.Collections.Generic.IList<T> ExecuteDynamicList<T>(this Microsoft.EntityFrameworkCore.DbContext ctx, string Sql, System.Collections.Generic.IEnumerable<string> DynamicColumnNames, params object[] Parameters);
-```
-#### Type parameters
-<a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_T'></a>
-`T`  
-  
-#### Parameters
-<a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_ctx'></a>
-`ctx` [Microsoft.EntityFrameworkCore.DbContext](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.EntityFrameworkCore.DbContext 'Microsoft.EntityFrameworkCore.DbContext')  
-  
-<a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_Sql'></a>
-`Sql` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
-  
-<a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_DynamicColumnNames'></a>
-`DynamicColumnNames` [System.Collections.Generic.IEnumerable&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IEnumerable-1 'System.Collections.Generic.IEnumerable`1')  
-  
-<a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_Parameters'></a>
-`Parameters` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-  
-#### Returns
-[System.Collections.Generic.IList&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')[T](DbContextExtensions_ExecuteDynamicList_T_(DbContext_string_IEnumerable_string__object__)#RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList_T_(Microsoft_EntityFrameworkCore_DbContext_string_System_Collections_Generic_IEnumerable_string__object__)_T 'RobertsDbContextExtensions.DbContextExtensions.ExecuteDynamicList&lt;T&gt;(Microsoft.EntityFrameworkCore.DbContext, string, System.Collections.Generic.IEnumerable&lt;string&gt;, object[]).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')  

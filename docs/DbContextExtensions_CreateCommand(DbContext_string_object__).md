@@ -7,17 +7,15 @@ public static System.Data.Common.DbCommand CreateCommand(this Microsoft.EntityFr
 #### Parameters
 <a name='RobertsDbContextExtensions_DbContextExtensions_CreateCommand(Microsoft_EntityFrameworkCore_DbContext_string_object__)_ctx'></a>
 `ctx` [Microsoft.EntityFrameworkCore.DbContext](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.EntityFrameworkCore.DbContext 'Microsoft.EntityFrameworkCore.DbContext')  
-The database connection
+The DbContext used to create the command (will also be used to execute the command on)
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_CreateCommand(Microsoft_EntityFrameworkCore_DbContext_string_object__)_Sql'></a>
 `Sql` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
-The SQL text the command will execute
+The SQL the command will execute
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_CreateCommand(Microsoft_EntityFrameworkCore_DbContext_string_object__)_Parameters'></a>
 `Parameters` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
 The parameters, if any, that should be passed to the SQL.
-            If the first parameter is an IDbTransaction then that is passed to the command
-            as its transaction and not as a parameter.
             
   
 #### Returns

@@ -17,6 +17,7 @@ public static System.Collections.Generic.IList<T1> LoadDataset<T1,T2>(this Micro
 #### Parameters
 <a name='RobertsDbContextExtensions_DbContextExtensions_LoadDataset_T1_T2_(Microsoft_EntityFrameworkCore_DbContext_System_Data_Common_DbCommand_string_System_Action_T1_System_Collections_Generic_IList_T2___string)_ctx'></a>
 `ctx` [Microsoft.EntityFrameworkCore.DbContext](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.EntityFrameworkCore.DbContext 'Microsoft.EntityFrameworkCore.DbContext')  
+The DbContext to execute the command on
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_LoadDataset_T1_T2_(Microsoft_EntityFrameworkCore_DbContext_System_Data_Common_DbCommand_string_System_Action_T1_System_Collections_Generic_IList_T2___string)_cmd'></a>
 `cmd` [System.Data.Common.DbCommand](https://docs.microsoft.com/en-us/dotnet/api/System.Data.Common.DbCommand 'System.Data.Common.DbCommand')  

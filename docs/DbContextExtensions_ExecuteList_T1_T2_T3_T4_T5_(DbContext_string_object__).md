@@ -24,9 +24,11 @@ public static (System.Collections.Generic.IList<T1>,System.Collections.Generic.I
 #### Parameters
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteList_T1_T2_T3_T4_T5_(Microsoft_EntityFrameworkCore_DbContext_string_object__)_ctx'></a>
 `ctx` [Microsoft.EntityFrameworkCore.DbContext](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.EntityFrameworkCore.DbContext 'Microsoft.EntityFrameworkCore.DbContext')  
+The DbContext to execute the SQL on
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteList_T1_T2_T3_T4_T5_(Microsoft_EntityFrameworkCore_DbContext_string_object__)_Sql'></a>
 `Sql` [System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+The SQL to be executed.
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteList_T1_T2_T3_T4_T5_(Microsoft_EntityFrameworkCore_DbContext_string_object__)_Parameters'></a>
 `Parameters` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  

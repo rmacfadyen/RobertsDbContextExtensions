@@ -8,6 +8,7 @@ public static System.Data.DataSet LoadDataset(this Microsoft.EntityFrameworkCore
 #### Parameters
 <a name='RobertsDbContextExtensions_DbContextExtensions_LoadDataset(Microsoft_EntityFrameworkCore_DbContext_System_Data_Common_DbCommand)_ctx'></a>
 `ctx` [Microsoft.EntityFrameworkCore.DbContext](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.EntityFrameworkCore.DbContext 'Microsoft.EntityFrameworkCore.DbContext')  
+The DbContext to execute the command on
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_LoadDataset(Microsoft_EntityFrameworkCore_DbContext_System_Data_Common_DbCommand)_cmd'></a>
 `cmd` [System.Data.Common.DbCommand](https://docs.microsoft.com/en-us/dotnet/api/System.Data.Common.DbCommand 'System.Data.Common.DbCommand')  

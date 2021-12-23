@@ -70,10 +70,10 @@ namespace RobertsDbContextExtensions
         /// <summary>
         /// Execute the provided SQL and return the number of rows affected.
         /// </summary>
-        /// <param name="ctx"></param>
-        /// <param name="Sql"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters"></param>
-        /// <returns></returns>
+        /// <returns>The number of rows affected. Zero if no rows where affected or if the query wasn't row related (eg. created a table)</returns>
         public static int ExecuteNonQuery(this DbContext ctx, string Sql, params object[] Parameters)
         {
             EnsureConnectionOpen(ctx);
@@ -93,8 +93,8 @@ namespace RobertsDbContextExtensions
         /// the result set.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="ctx"></param>
-        /// <param name="Sql"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters"></param>
         /// <returns></returns>
         public static T ExecuteScalar<T>(this DbContext ctx, string Sql, params object[] Parameters)
@@ -112,7 +112,7 @@ namespace RobertsDbContextExtensions
         /// the result set.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the command on</param>
         /// <param name="cmd"></param>
         /// <returns></returns>
         public static T ExecuteScalar<T>(this DbContext ctx, IDbCommand cmd)
@@ -136,7 +136,8 @@ namespace RobertsDbContextExtensions
         /// as an object[]. This array will be populated with column values
         /// as passed in the DynmaicColumnNames list (in the same order). The
         /// other properties on the object will be populated as normal.
-        /// 
+        /// </summary>
+        /// <remarks>
         /// This is a bit tricky to do, but also surprisingly straight-forward.
         /// When we decide whether we're reading a value or an object we now
         /// decide between value, dynamic, or object. For dynamic we figure
@@ -160,10 +161,10 @@ namespace RobertsDbContextExtensions
         /// It is up to the caller to track the order of columns in the object array.
         /// This is mostly done for an expected performance gain (duplicating the
         /// mapping on every row/instance seems wasteful, even if it's only a reference)
-        /// </summary>
+        /// </remarks>
         /// <typeparam name="T"></typeparam>
-        /// <param name="ctx"></param>
-        /// <param name="Sql"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="DynamicColumnNames"></param>
         /// <param name="Parameters"></param>
         /// <returns></returns>
@@ -185,9 +186,9 @@ namespace RobertsDbContextExtensions
         /// and the first result contains columns that are not known in 
         /// advanced, then ExecuteDynamicList is your ticket.
         /// </summary>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Types"></param>
-        /// <param name="Sql"></param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="DynamicColumnNames"></param>
         /// <param name="Parameters"></param>
         /// <returns></returns>
@@ -237,7 +238,7 @@ namespace RobertsDbContextExtensions
         /// an IList&lt;T&gt;.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the command on</param>
         /// <param name="cmd"></param>
         /// <returns></returns>
         public static IList<T> ExecuteList<T>(
@@ -258,7 +259,7 @@ namespace RobertsDbContextExtensions
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the command on</param>
         /// <param name="cmd"></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>) ExecuteList<T1, T2>(
@@ -286,7 +287,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
         /// <typeparam name="T3"></typeparam>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the command on</param>
         /// <param name="cmd"></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>) ExecuteList<T1, T2, T3>(
@@ -319,7 +320,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T2"></typeparam>
         /// <typeparam name="T3"></typeparam>
         /// <typeparam name="T4"></typeparam>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the command on</param>
         /// <param name="cmd"></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>) ExecuteList<T1, T2, T3, T4>(
@@ -355,7 +356,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T3"></typeparam>
         /// <typeparam name="T4"></typeparam>
         /// <typeparam name="T5"></typeparam>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the command on</param>
         /// <param name="cmd"></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>) ExecuteList<T1, T2, T3, T4, T5>(
@@ -395,7 +396,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T4"></typeparam>
         /// <typeparam name="T5"></typeparam>
         /// <typeparam name="T6"></typeparam>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the command on</param>
         /// <param name="cmd"></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>, IList<T6>) ExecuteList<T1, T2, T3, T4, T5, T6>(
@@ -438,8 +439,8 @@ namespace RobertsDbContextExtensions
         /// first result set mapped to lists.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="ctx"></param>
-        /// <param name="Sql"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters"></param>
         /// <returns></returns>
         public static IList<T> ExecuteList<T>(
@@ -460,8 +461,8 @@ namespace RobertsDbContextExtensions
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
-        /// <param name="ctx"></param>
-        /// <param name="Sql"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters"></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>) ExecuteList<T1, T2>(
@@ -491,8 +492,8 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
         /// <typeparam name="T3"></typeparam>
-        /// <param name="ctx"></param>
-        /// <param name="Sql"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters"></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>) ExecuteList<T1, T2, T3>(
@@ -526,8 +527,8 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T2"></typeparam>
         /// <typeparam name="T3"></typeparam>
         /// <typeparam name="T4"></typeparam>
-        /// <param name="ctx"></param>
-        /// <param name="Sql"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters"></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>) ExecuteList<T1, T2, T3, T4>(
@@ -564,8 +565,8 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T3"></typeparam>
         /// <typeparam name="T4"></typeparam>
         /// <typeparam name="T5"></typeparam>
-        /// <param name="ctx"></param>
-        /// <param name="Sql"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters"></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>) ExecuteList<T1, T2, T3, T4, T5>(
@@ -606,8 +607,8 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T4"></typeparam>
         /// <typeparam name="T5"></typeparam>
         /// <typeparam name="T6"></typeparam>
-        /// <param name="ctx"></param>
-        /// <param name="Sql"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters"></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>, IList<T6>) ExecuteList<T1, T2, T3, T4, T5, T6>(
@@ -648,11 +649,9 @@ namespace RobertsDbContextExtensions
         /// <summary>
         /// Create an DbCommand and populate its parameters (if necesary)
         /// </summary>
-        /// <param name="ctx">The database connection</param>
-        /// <param name="Sql">The SQL text the command will execute</param>
+        /// <param name="ctx">The DbContext used to create the command (will also be used to execute the command on)</param>
+        /// <param name="Sql">The SQL the command will execute</param>
         /// <param name="Parameters">The parameters, if any, that should be passed to the SQL.
-        /// If the first parameter is an IDbTransaction then that is passed to the command
-        /// as its transaction and not as a parameter.
         /// </param>
         /// <returns>Am initialized DbCommand ready for execution. If a transaction
         /// is active the command is enrolled in it.</returns>
@@ -729,8 +728,8 @@ namespace RobertsDbContextExtensions
         /// Execute the provided SQL and return a stream from the database. This is
         /// indended for accessing BLOBs stored in the database efficiently.
         /// </summary>
-        /// <param name="ctx"></param>
-        /// <param name="Sql"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
+        /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters"></param>
         /// <returns></returns>
         public static Stream ExecuteScalarStream(this DbContext ctx, string Sql, params object[] Parameters)
@@ -748,7 +747,7 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return its results as a classic ADO.NET DataSet.
         /// Only provided for migratory purposes. Should be avoided for new code.
         /// </summary>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the command on</param>
         /// <param name="cmd"></param>
         /// <returns></returns>
         /// <exception cref="InvalidOperationException"></exception>
@@ -770,7 +769,7 @@ namespace RobertsDbContextExtensions
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the command on</param>
         /// <param name="cmd"></param>
         /// <param name="T1Column"></param>
         /// <param name="Assignment"></param>
@@ -809,6 +808,13 @@ namespace RobertsDbContextExtensions
         }
 
 
+        /// <summary>
+        /// Takes a list of DataRows and populates an IList<typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Rows"></param>
+        /// <returns>An IList<typeparamref name="T"/> based on the passed Rows</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         private static IList<T> ReadChildRows<T>(IEnumerable<DataRow> Rows)
         {
             var List = new List<T>();
@@ -848,7 +854,12 @@ namespace RobertsDbContextExtensions
         }
 
 
-
+        /// <summary>
+        /// Load one DataRow into one instance of T
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dr"></param>
+        /// <returns></returns>
         private static T LoadOneFromDr<T>(DataRow dr) where T : new()
         {
             var Properties = typeof(T).GetProperties();
@@ -858,7 +869,14 @@ namespace RobertsDbContextExtensions
         }
 
 
-
+        /// <summary>
+        /// Populates an object's properties from a DataROw
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="Properties"></param>
+        /// <param name="Columns"></param>
+        /// <param name="dr"></param>
+        /// <param name="o"></param>
         private static void InitializeFromDataRow<T>(
             System.Reflection.PropertyInfo[] Properties, 
             DataColumnCollection Columns, 
@@ -914,7 +932,7 @@ namespace RobertsDbContextExtensions
         /// Executes the provided SQL and returns a classic ADO.NET DataTable. 
         /// Only provided for migratory purposes. Should be avoided for new code.
         /// </summary>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql"></param>
         /// <param name="Parameters"></param>
         /// <returns></returns>
@@ -928,7 +946,7 @@ namespace RobertsDbContextExtensions
         /// Executes the provided command and returns a classic ADO.NET DataTable. 
         /// Only provided for migratory purposes. Should be avoided for new code.
         /// </summary>
-        /// <param name="ctx"></param>
+        /// <param name="ctx">The DbContext to execute the command on</param>
         /// <param name="cmd"></param>
         /// <returns></returns>
         public static DataTable LoadDataTable(this DbContext ctx, IDbCommand cmd)
@@ -1075,7 +1093,13 @@ namespace RobertsDbContextExtensions
 
         #region Reader helpers
 
-
+        /// <summary>
+        /// Load a list of T's from a IDataReader
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dbDataReader"></param>
+        /// <param name="DynamicColumns"></param>
+        /// <returns></returns>
         private static IList<T> ListFromDbReader<T>(IDataReader dbDataReader, IEnumerable<string> DynamicColumns = null)
         {
             IList<PropertyDetails> ColumnsToRead;
@@ -1121,7 +1145,14 @@ namespace RobertsDbContextExtensions
             return List;
         }
 
-
+        /// <summary>
+        /// Load a list of the specified type from an IDataReader
+        /// </summary>
+        /// <param name="dbDataReader"></param>
+        /// <param name="TypeOfT"></param>
+        /// <param name="DynamicColumns"></param>
+        /// <returns></returns>
+        /// <exception cref="NullReferenceException"></exception>
         private static System.Collections.IList ListFromDbReader(
             IDataReader dbDataReader,
             Type TypeOfT,
@@ -1174,6 +1205,16 @@ namespace RobertsDbContextExtensions
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ctx"></param>
+        /// <param name="operation"></param>
+        /// <param name="ColumnNames"></param>
+        /// <param name="Sql"></param>
+        /// <param name="Parameters"></param>
+        /// <returns></returns>
         private static T ExecuteReaderFromSql<T>(
             this DbContext ctx,
             Func<IDataReader, IEnumerable<string>, T> operation,
@@ -1187,6 +1228,15 @@ namespace RobertsDbContextExtensions
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="ctx"></param>
+        /// <param name="operation"></param>
+        /// <param name="ColumnNames"></param>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
         private static T ExecuteReaderFromCmd<T>(
               this DbContext ctx,
               Func<IDataReader, IEnumerable<string>, T> operation,
