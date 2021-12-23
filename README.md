@@ -65,19 +65,13 @@ The extension methods can also handle primitive values just as easily:
 ```c#
     public Customer GetNumberOfCustomers()
     {
-        var Sql =
-            @"select count(*)
-            from Customers    
-            ";
+        var Sql = "select count(*) from Customers";
         return ctx.ExecuteScalar<int>(Sql);
     }
 
     public Customer GetCustomerNames()
     {
-        var Sql =
-            @"select CustomerName
-            from Customers    
-            ";
+        var Sql = "select CustomerName from Customers";
         return ctx.ExecuteList<string>(Sql);
     }
 ```
