@@ -46,6 +46,42 @@ There are a few points of interest:
 - Result set columns without a matching property are ignored. Properties without a matching result set column are initialize to their default value.
 - Data type mismatches between the result set and the POCO will throw exceptions (if the database returns a datetime column it can't be stuffed into a bool property).
  
+If instead of a single customer you need multiple it would look like:
+
+```
+    public IList<Customer> GetMatchingCustomers(string Phrase)
+    {
+        var Sql =
+            @"select CustomerId, CustomerName
+            from Customers    
+            where CustomerName like @Phrase
+            ";
+        return ctx.ExecuteList<Customer>(Sql, new { Phrase });
+    }
+```
+
+The extension methods can also handle primitive values just as easily:
+
+```
+    public Customer GetNumberOfCustomers()
+    {
+        var Sql =
+            @"select count(*)
+            from Customers    
+            ";
+        return ctx.ExecuteScalar<int>(Sql);
+    }
+
+    public Customer GetCustomerNames()
+    {
+        var Sql =
+            @"select CustomerName
+            from Customers    
+            ";
+        return ctx.ExecuteList<string>(Sql);
+    }
+```
+
 
 You can review the [class documentation](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions).
 
