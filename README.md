@@ -118,7 +118,7 @@ Execute arbitrary SQL (to alter a table, delete rows, insert rows, etc):
 
 ### Documentation
 
-You can review the full [class documentation](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions).
+You can review the [full documentation](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions).
 
 Some highlights:
 
