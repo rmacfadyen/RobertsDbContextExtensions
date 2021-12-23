@@ -67,13 +67,13 @@ If instead of a single customer you need multiple it would look like:
 The extension methods can also handle primitive values just as easily:
 
 ```c#
-    public Customer GetNumberOfCustomers()
+    public int GetNumberOfCustomers()
     {
         var Sql = "select count(*) from Customers";
         return ctx.ExecuteScalar<int>(Sql);
     }
 
-    public Customer GetCustomerNames()
+    public IList<string> GetCustomerNames()
     {
         var Sql = "select CustomerName from Customers";
         return ctx.ExecuteList<string>(Sql);
