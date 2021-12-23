@@ -15,8 +15,7 @@ The SQL the command will execute
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_CreateCommand(Microsoft_EntityFrameworkCore_DbContext_string_object__)_Parameters'></a>
 `Parameters` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-The parameters, if any, that should be passed to the SQL.
-            
+A list of values to be passed as parameters. See [Passing parameters](https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md 'https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md')
   
 #### Returns
 [System.Data.Common.DbCommand](https://docs.microsoft.com/en-us/dotnet/api/System.Data.Common.DbCommand 'System.Data.Common.DbCommand')  

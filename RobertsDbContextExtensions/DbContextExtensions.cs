@@ -66,13 +66,13 @@ namespace RobertsDbContextExtensions
 
 
         #region NonQuery from SQL
-      
+
         /// <summary>
         /// Execute the provided SQL and return the number of rows affected.
         /// </summary>
         /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql">The SQL to be executed.</param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns>The number of rows affected. Zero if no rows where affected or if the query wasn't row related (eg. created a table)</returns>
         public static int ExecuteNonQuery(this DbContext ctx, string Sql, params object[] Parameters)
         {
@@ -166,7 +166,7 @@ namespace RobertsDbContextExtensions
         /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="DynamicColumnNames"></param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns></returns>
         public static IList<T> ExecuteDynamicList<T>(
             this DbContext ctx, string Sql, IEnumerable<string> DynamicColumnNames, params object[] Parameters
@@ -190,7 +190,7 @@ namespace RobertsDbContextExtensions
         /// <param name="Types"></param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="DynamicColumnNames"></param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns></returns>
         public static IList<object> ExecuteDynamicList(
             this DbContext ctx,
@@ -237,12 +237,6 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return the result set mapped to
         /// an IList&lt;T&gt;.
         /// </summary>
-        /// <seealso cref="ExecuteList{T}(DbContext, string, object[])"/>
-        /// <seealso cref="ExecuteList{T1, T2}(DbContext, string, object[])"/>
-        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, string, object[])"/>
-        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, string, object[])"/>
-        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, string, object[])"/>
-        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, string, object[])"/>
         /// <typeparam name="T"></typeparam>
         /// <param name="ctx">The DbContext to execute the command on</param>
         /// <param name="cmd"></param>
@@ -444,10 +438,18 @@ namespace RobertsDbContextExtensions
         /// Execute the provided SQL and return a tuple of the 
         /// first result set mapped to lists.
         /// </summary>
+        /// <remarks>
+        /// <seealso cref="ExecuteList{T}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5}(DbContext, string, object[])"/>
+        /// <seealso cref="ExecuteList{T1, T2, T3, T4, T5, T6}(DbContext, string, object[])"/>
+        /// </remarks>
         /// <typeparam name="T"></typeparam>
         /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql">The SQL to be executed.</param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns></returns>
         public static IList<T> ExecuteList<T>(
             this DbContext ctx, string Sql, params object[] Parameters
@@ -469,7 +471,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T2"></typeparam>
         /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql">The SQL to be executed.</param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>) ExecuteList<T1, T2>(
             this DbContext ctx, string Sql, params object[] Parameters
@@ -500,7 +502,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T3"></typeparam>
         /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql">The SQL to be executed.</param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>) ExecuteList<T1, T2, T3>(
             this DbContext ctx, string Sql, params object[] Parameters
@@ -535,7 +537,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T4"></typeparam>
         /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql">The SQL to be executed.</param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>) ExecuteList<T1, T2, T3, T4>(
             this DbContext ctx, string Sql, params object[] Parameters
@@ -573,7 +575,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T5"></typeparam>
         /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql">The SQL to be executed.</param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>) ExecuteList<T1, T2, T3, T4, T5>(
              this DbContext ctx, string Sql, params object[] Parameters
@@ -615,7 +617,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T6"></typeparam>
         /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql">The SQL to be executed.</param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns></returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>, IList<T6>) ExecuteList<T1, T2, T3, T4, T5, T6>(
             this DbContext ctx, string Sql, params object[] Parameters
@@ -657,8 +659,7 @@ namespace RobertsDbContextExtensions
         /// </summary>
         /// <param name="ctx">The DbContext used to create the command (will also be used to execute the command on)</param>
         /// <param name="Sql">The SQL the command will execute</param>
-        /// <param name="Parameters">The parameters, if any, that should be passed to the SQL.
-        /// </param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns>Am initialized DbCommand ready for execution. If a transaction
         /// is active the command is enrolled in it.</returns>
         public static DbCommand CreateCommand(this DbContext ctx, string Sql, params object[] Parameters)
@@ -736,7 +737,7 @@ namespace RobertsDbContextExtensions
         /// </summary>
         /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql">The SQL to be executed.</param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns></returns>
         public static Stream ExecuteScalarStream(this DbContext ctx, string Sql, params object[] Parameters)
         {
@@ -940,7 +941,7 @@ namespace RobertsDbContextExtensions
         /// </summary>
         /// <param name="ctx">The DbContext to execute the SQL on</param>
         /// <param name="Sql"></param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns></returns>
         public static DataTable LoadDataTable(this DbContext ctx, string Sql, params object[] Parameters)
         {
@@ -1219,7 +1220,7 @@ namespace RobertsDbContextExtensions
         /// <param name="operation"></param>
         /// <param name="ColumnNames"></param>
         /// <param name="Sql"></param>
-        /// <param name="Parameters"></param>
+        /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
         /// <returns></returns>
         private static T ExecuteReaderFromSql<T>(
             this DbContext ctx,

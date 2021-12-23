@@ -23,6 +23,7 @@ The SQL to be executed.
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteDynamicList(Microsoft_EntityFrameworkCore_DbContext_System_Collections_Generic_IEnumerable_System_Type__string_System_Collections_Generic_IEnumerable_string__object__)_Parameters'></a>
 `Parameters` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
+A list of values to be passed as parameters. See [Passing parameters](https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md 'https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md')
   
 #### Returns
 [System.Collections.Generic.IList&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')[System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')  
