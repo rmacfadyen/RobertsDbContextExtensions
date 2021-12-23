@@ -1,3 +1,52 @@
+## Robert's DbContext Extensions
+
+If you just need to load some data from a database server into
+a plain old C# object then you're in the right place.
+
+Here's how you would read a single record from a Customer table:
+
+```C#
+using Microsoft.EntityFrameworkCore;
+using RobertsDbContextExtensions;
+
+namespace SampleCode
+{
+    public class Customer
+    {
+        public int CustomerId { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class Worker
+    {
+        private DbContext ctx;
+        public Worker(DbContext ctx)
+        {
+            this.ctx = ctx;
+        }
+
+        public Customer GetCustomer(int CustomerId)
+        {
+            var Sql =
+                @"select CustomerId, CustomerName
+                from Customers    
+                where CustomerId = @CustomerId
+                ";
+            return ctx.ExecuteScalar<Customer>(Sql, new { CustomerId });
+        }
+    }
+}
+```
+
+There are a few points of interest:
+
+- The mapping of columns from a query's result set to a POCO object is done by matching the column names to the property names (must be properties, can't be fields)
+- Parameter passing can be done in several ways, and what's shown here is a simple anonymous class who's properties are mapped to parameter names.
+- To keep things quick object creation and property assignment are done using cached dynamically compiled lambdas. See FastActivator.cs for class instantion and FastPropertySetter.cs for fast property assignments.
+- Result set columns without a matching property are ignored. Properties without a matching result set column are initialize to their default value.
+- Data type mismatches between the result set and the POCO will throw exceptions (if the database returns a datetime column it can't be stuffed into a bool property).
+ 
+
 You can review the [class documentation](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions).
 
 
