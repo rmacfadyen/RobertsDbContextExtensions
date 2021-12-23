@@ -25,7 +25,7 @@ A list of values to be passed as parameters. See [Passing parameters](https://gi
   
 #### Returns
 [System.Collections.Generic.IList&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')[T](DbContextExtensions_ExecuteList_T_(DbContext_string_object__)#RobertsDbContextExtensions_DbContextExtensions_ExecuteList_T_(Microsoft_EntityFrameworkCore_DbContext_string_object__)_T 'RobertsDbContextExtensions.DbContextExtensions.ExecuteList&lt;T&gt;(Microsoft.EntityFrameworkCore.DbContext, string, object[]).T')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.IList-1 'System.Collections.Generic.IList`1')  
-A tuple, with each value be the corresponding mapping of a result set.
+A tuple, with each value being the corresponding mapping of a result set.
 #### See Also
 - [ExecuteList&lt;T&gt;(DbContext, string, object[])](DbContextExtensions_ExecuteList_T_(DbContext_string_object__) 'RobertsDbContextExtensions.DbContextExtensions.ExecuteList&lt;T&gt;(Microsoft.EntityFrameworkCore.DbContext, string, object[])')
 - [ExecuteList&lt;T1,T2&gt;(DbContext, string, object[])](DbContextExtensions_ExecuteList_T1_T2_(DbContext_string_object__) 'RobertsDbContextExtensions.DbContextExtensions.ExecuteList&lt;T1,T2&gt;(Microsoft.EntityFrameworkCore.DbContext, string, object[])')

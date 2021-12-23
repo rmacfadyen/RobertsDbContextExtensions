@@ -280,7 +280,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T2">The type the second result set should be mapped to.</typeparam>
         /// <param name="ctx">The DbContext to execute the command on.</param>
         /// <param name="cmd">The command to be executed.</param>
-        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
+        /// <returns>A tuple, with each value being the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>) ExecuteList<T1, T2>(
             this DbContext ctx, IDbCommand cmd
         )
@@ -314,7 +314,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T3">The type the third result set should be mapped to.</typeparam>
         /// <param name="ctx">The DbContext to execute the command on.</param>
         /// <param name="cmd">The command to be executed.</param>
-        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
+        /// <returns>A tuple, with each value being the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>) ExecuteList<T1, T2, T3>(
             this DbContext ctx, IDbCommand cmd
         )
@@ -353,7 +353,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T4">The type the forth result set should be mapped to.</typeparam>
         /// <param name="ctx">The DbContext to execute the command on.</param>
         /// <param name="cmd">The command to be executed.</param>
-        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
+        /// <returns>A tuple, with each value being the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>) ExecuteList<T1, T2, T3, T4>(
             this DbContext ctx, IDbCommand cmd
         )
@@ -395,7 +395,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T5">The type the fifth result set should be mapped to.</typeparam>
         /// <param name="ctx">The DbContext to execute the command on.</param>
         /// <param name="cmd">The command to be executed.</param>
-        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
+        /// <returns>A tuple, with each value being the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>) ExecuteList<T1, T2, T3, T4, T5>(
             this DbContext ctx, IDbCommand cmd
         )
@@ -441,7 +441,7 @@ namespace RobertsDbContextExtensions
         /// <typeparam name="T6">The type the sixth result set should be mapped to.</typeparam>
         /// <param name="ctx">The DbContext to execute the command on.</param>
         /// <param name="cmd">The command to be executed.</param>
-        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
+        /// <returns>A tuple, with each value being the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>, IList<T6>) ExecuteList<T1, T2, T3, T4, T5, T6>(
             this DbContext ctx, IDbCommand cmd
         )
@@ -491,7 +491,7 @@ namespace RobertsDbContextExtensions
         /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
+        /// <returns>A tuple, with each value being the corresponding mapping of a result set.</returns>
         public static IList<T> ExecuteList<T>(
             this DbContext ctx, string Sql, params object[] Parameters
         )
@@ -519,7 +519,7 @@ namespace RobertsDbContextExtensions
         /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
+        /// <returns>A tuple, with each value being the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>) ExecuteList<T1, T2>(
             this DbContext ctx, string Sql, params object[] Parameters
         )
@@ -556,7 +556,7 @@ namespace RobertsDbContextExtensions
         /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
+        /// <returns>A tuple, with each value being the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>) ExecuteList<T1, T2, T3>(
             this DbContext ctx, string Sql, params object[] Parameters
         )
@@ -597,7 +597,7 @@ namespace RobertsDbContextExtensions
         /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
+        /// <returns>A tuple, with each value being the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>) ExecuteList<T1, T2, T3, T4>(
             this DbContext ctx, string Sql, params object[] Parameters
         )
@@ -641,7 +641,7 @@ namespace RobertsDbContextExtensions
         /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
+        /// <returns>A tuple, with each value being the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>) ExecuteList<T1, T2, T3, T4, T5>(
              this DbContext ctx, string Sql, params object[] Parameters
          )
@@ -689,7 +689,7 @@ namespace RobertsDbContextExtensions
         /// <param name="ctx">The DbContext to execute the SQL on.</param>
         /// <param name="Sql">The SQL to be executed.</param>
         /// <param name="Parameters">A list of values to be passed as parameters. See <see href="https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md">Passing parameters</see></param>
-        /// <returns>A tuple, with each value be the corresponding mapping of a result set.</returns>
+        /// <returns>A tuple, with each value being the corresponding mapping of a result set.</returns>
         public static (IList<T1>, IList<T2>, IList<T3>, IList<T4>, IList<T5>, IList<T6>) ExecuteList<T1, T2, T3, T4, T5, T6>(
             this DbContext ctx, string Sql, params object[] Parameters
         )
