@@ -3,6 +3,7 @@
 If you just need to load some data from a database server into
 a plain old C# object then you're in the right place.
 
+### Sample Code
 Here's how you would read a single record from a Customer table:
 
 ```C#
@@ -87,23 +88,16 @@ query you can:
     }
 ```
 
+### Documentation
 
+You can review the full [class documentation](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions), just the highlights:
 
-You can review the [class documentation](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions).
+- [ExecuteList<T1...T6>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteList_T_(DbContext_string_object__)) - Loads a list of values from the database, up to 6 lists (T1..T6).
+- [ExecuteScalar<T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteNonQuery(DbContext_string_object__)) - Executes SQL and returns the first column of the first row of the first result set.
+- [ExecuteNonQuery](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteNonQuery(DbContext_string_object__)) - Executes SQL and returns number of rows affected
+- [ExecuteScalarStream](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteScalarStream(DbContext_string_object__)) - Executes SQL and returns a Stream directly from the database (great for efficiently retrieving BLOBs).
+- [ExecuteDynamicList<T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList_T_(DbContext_string_IEnumerable_string__object__)) - Executes SQL and returns a list of T's with additional columns in an object[] (roughly equivelant of EFCore's shadow properties).
+- [ExecuteDynamicList](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList(DbContext_IEnumerable_Type__string_IEnumerable_string__object__)) - Executes SQL and returns a list of objects with additional columns in an object[], and additional object lists.
 
-
-Adds the following extension methods to DbContext
-
-CreateCommand - Convinence method to create a IDbCommand object
-
-ExecuteNonQuery - Executes SQL and returns number of rows affected
-ExecuteList<T> - Loads a list of values from the database, up to 6 lists (T1..T6)
-ExecuteScalar<T> - Executes SQL and returns the single value
-ExecuteScalarStream - Executes SQL and returns a Stream 
-
-ExecuteDynamicList<T> - Executes SQL and returns a list of T's with additional columns in an object[]
-ExecuteDynamicList - Executes SQL and returns a list of objects with additional columns in an object[], and additional object lists
-
-LoadDataTable - Loads a classic ADO.NET datatable
-LoadDataset - Loads a classic ADO.NET datatable
 LoadDataset<T1, T2> - Loads a list of T1's each with a list of T2 child rows
+CreateCommand - Convinence method to create a IDbCommand object
