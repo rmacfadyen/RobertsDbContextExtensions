@@ -13,6 +13,42 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{BC0EAE49-8094-452B-AE7D-DEDC2B49A950}"
+	ProjectSection(SolutionItems) = preProject
+		docs\DbContextExtensions.md = docs\DbContextExtensions.md
+		docs\DbContextExtensions_AddParameterValue(IDbCommand_string_bool).md = docs\DbContextExtensions_AddParameterValue(IDbCommand_string_bool).md
+		docs\DbContextExtensions_AddParameterValue(IDbCommand_string_DBNull).md = docs\DbContextExtensions_AddParameterValue(IDbCommand_string_DBNull).md
+		docs\DbContextExtensions_AddParameterValue(IDbCommand_string_int).md = docs\DbContextExtensions_AddParameterValue(IDbCommand_string_int).md
+		docs\DbContextExtensions_AddParameterValue(IDbCommand_string_object).md = docs\DbContextExtensions_AddParameterValue(IDbCommand_string_object).md
+		docs\DbContextExtensions_AddParameterValue(IDbCommand_string_string).md = docs\DbContextExtensions_AddParameterValue(IDbCommand_string_string).md
+		docs\DbContextExtensions_CreateCommand(DbContext_string_object__).md = docs\DbContextExtensions_CreateCommand(DbContext_string_object__).md
+		docs\DbContextExtensions_ExecuteDynamicList(DbContext_IEnumerable_Type__string_IEnumerable_string__object__).md = docs\DbContextExtensions_ExecuteDynamicList(DbContext_IEnumerable_Type__string_IEnumerable_string__object__).md
+		docs\DbContextExtensions_ExecuteDynamicList_T_(DbContext_string_IEnumerable_string__object__).md = docs\DbContextExtensions_ExecuteDynamicList_T_(DbContext_string_IEnumerable_string__object__).md
+		docs\DbContextExtensions_ExecuteList_T1_T2_(DbContext_IDbCommand).md = docs\DbContextExtensions_ExecuteList_T1_T2_(DbContext_IDbCommand).md
+		docs\DbContextExtensions_ExecuteList_T1_T2_(DbContext_string_object__).md = docs\DbContextExtensions_ExecuteList_T1_T2_(DbContext_string_object__).md
+		docs\DbContextExtensions_ExecuteList_T1_T2_T3_(DbContext_IDbCommand).md = docs\DbContextExtensions_ExecuteList_T1_T2_T3_(DbContext_IDbCommand).md
+		docs\DbContextExtensions_ExecuteList_T1_T2_T3_(DbContext_string_object__).md = docs\DbContextExtensions_ExecuteList_T1_T2_T3_(DbContext_string_object__).md
+		docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_(DbContext_IDbCommand).md = docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_(DbContext_IDbCommand).md
+		docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_(DbContext_string_object__).md = docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_(DbContext_string_object__).md
+		docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_T5_(DbContext_IDbCommand).md = docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_T5_(DbContext_IDbCommand).md
+		docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_T5_(DbContext_string_object__).md = docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_T5_(DbContext_string_object__).md
+		docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_T5_T6_(DbContext_IDbCommand).md = docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_T5_T6_(DbContext_IDbCommand).md
+		docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_T5_T6_(DbContext_string_object__).md = docs\DbContextExtensions_ExecuteList_T1_T2_T3_T4_T5_T6_(DbContext_string_object__).md
+		docs\DbContextExtensions_ExecuteList_T_(DbContext_IDbCommand).md = docs\DbContextExtensions_ExecuteList_T_(DbContext_IDbCommand).md
+		docs\DbContextExtensions_ExecuteList_T_(DbContext_string_object__).md = docs\DbContextExtensions_ExecuteList_T_(DbContext_string_object__).md
+		docs\DbContextExtensions_ExecuteNonQuery(DbContext_string_object__).md = docs\DbContextExtensions_ExecuteNonQuery(DbContext_string_object__).md
+		docs\DbContextExtensions_ExecuteScalar_T_(DbContext_IDbCommand).md = docs\DbContextExtensions_ExecuteScalar_T_(DbContext_IDbCommand).md
+		docs\DbContextExtensions_ExecuteScalar_T_(DbContext_string_object__).md = docs\DbContextExtensions_ExecuteScalar_T_(DbContext_string_object__).md
+		docs\DbContextExtensions_ExecuteScalar_T_(IDbCommand).md = docs\DbContextExtensions_ExecuteScalar_T_(IDbCommand).md
+		docs\DbContextExtensions_ExecuteScalarStream(DbContext_string_object__).md = docs\DbContextExtensions_ExecuteScalarStream(DbContext_string_object__).md
+		docs\DbContextExtensions_ExecuteScalarStream(IDbCommand).md = docs\DbContextExtensions_ExecuteScalarStream(IDbCommand).md
+		docs\DbContextExtensions_LoadDataset(DbContext_DbCommand).md = docs\DbContextExtensions_LoadDataset(DbContext_DbCommand).md
+		docs\DbContextExtensions_LoadDataset_T1_T2_(DbContext_DbCommand_string_Action_T1_IList_T2___string).md = docs\DbContextExtensions_LoadDataset_T1_T2_(DbContext_DbCommand_string_Action_T1_IList_T2___string).md
+		docs\DbContextExtensions_LoadDataTable(DbContext_IDbCommand).md = docs\DbContextExtensions_LoadDataTable(DbContext_IDbCommand).md
+		docs\DbContextExtensions_LoadDataTable(DbContext_string).md = docs\DbContextExtensions_LoadDataTable(DbContext_string).md
+		docs\RobertsDbContextExtensions.md = docs\RobertsDbContextExtensions.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
