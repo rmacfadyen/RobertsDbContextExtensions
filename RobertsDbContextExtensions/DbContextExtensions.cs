@@ -916,10 +916,11 @@ namespace RobertsDbContextExtensions
         /// </summary>
         /// <param name="ctx"></param>
         /// <param name="Sql"></param>
+        /// <param name="Parameters"></param>
         /// <returns></returns>
-        public static DataTable LoadDataTable(this DbContext ctx, string Sql)
+        public static DataTable LoadDataTable(this DbContext ctx, string Sql, params object[] Parameters)
         {
-            var cmd = ctx.CreateCommand(Sql);
+            var cmd = ctx.CreateCommand(Sql, Parameters);
             return ctx.LoadDataTable(cmd);
         }
 
