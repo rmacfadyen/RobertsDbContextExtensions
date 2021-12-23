@@ -237,6 +237,7 @@ namespace RobertsDbContextExtensions
         /// Execute the provided command and return the result set mapped to
         /// an IList&lt;T&gt;.
         /// </summary>
+        /// <seealso cref="ExecuteList{T}(DbContext, string, object[])"/>
         /// <seealso cref="ExecuteList{T1, T2}(DbContext, string, object[])"/>
         /// <seealso cref="ExecuteList{T1, T2, T3}(DbContext, string, object[])"/>
         /// <seealso cref="ExecuteList{T1, T2, T3, T4}(DbContext, string, object[])"/>
