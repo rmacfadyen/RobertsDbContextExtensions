@@ -1,3 +1,6 @@
+You can review the [class documentation](/RobertsDbContextExtensions/DbContextExtensions.md).
+
+
 Adds the following extension methods to DbContext
 
 CreateCommand - Convinence method to create a IDbCommand object
