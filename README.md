@@ -129,14 +129,16 @@ Some highlights:
 - [ExecuteDynamicList&lt;T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList_T_(DbContext_string_IEnumerable_string__object__)) - Executes SQL and returns a list of T's with additional columns in an object[] (roughly equivelant of EFCore's shadow properties).
 - [ExecuteDynamicList](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList(DbContext_IEnumerable_Type__string_IEnumerable_string__object__)) - Executes SQL and returns a list of objects with additional columns in an object[], and additional object lists.
 
-Less commonly used methods:
-- [LoadDataset&lt;T1, T2>(IDbCommand, ...)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataset_T1_T2_(DbContext_DbCommand_string_Action_T1_IList_T2___string)) - Loads a list of T1's each with a list of T2 child rows
+Methods for creating IDbCommand instances:
 - [CreateCommand(string, params object[])](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_CreateCommand(DbContext_string_object__)) - Convinence method to create a IDbCommand object
 - [AddParameterValue(string, bool)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_bool)) - Adds a bool parameter to an IDbCommand
 - [AddParameterValue(string, string)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_string)) - Adds a string parameter to an IDbCommand
 - [AddParameterValue(string, int)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_int)) - Adds an int parameter to an IDbCommand
 - [AddParameterValue(string, DBNull)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_DBNull)) - Adds a null value parameter to an IDbCommand
 - [AddParameterValue(string, object)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_object)) - Adds a object parameter to an IDbCommand
+
+Less commonly used methods:
+- [LoadDataset&lt;T1, T2>(IDbCommand, ...)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataset_T1_T2_(DbContext_DbCommand_string_Action_T1_IList_T2___string)) - Loads a list of T1's each with a list of T2 child rows
 
 Methods to help migrate classic ADO.NET code:
 - [LoadDataTable(string, params object[])](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataTable(DbContext_string)) - Loads a classic ADO.NET DataTable
