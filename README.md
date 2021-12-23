@@ -1,4 +1,4 @@
-You can review the [class documentation](https://rmacfadyen.github.io/RobertsDbContextExtensions/DbContextExtensions.md).
+You can review the [class documentation](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions).
 
 
 Adds the following extension methods to DbContext
