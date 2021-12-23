@@ -122,14 +122,15 @@ You can review the full [class documentation](https://rmacfadyen.github.io/Rober
 
 Some highlights:
 
-- [ExecuteList<T1...T6>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteList_T_(DbContext_string_object__)) - Loads a list of values from the database, up to 6 lists (T1..T6).
-- [ExecuteScalar<T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteNonQuery(DbContext_string_object__)) - Executes SQL and returns the first column of the first row of the first result set.
+- [ExecuteList&lt;T1...T6>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteList_T_(DbContext_string_object__)) - Loads a list of values from the database, up to 6 lists (T1..T6).
+- [ExecuteScalar&lt;T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteNonQuery(DbContext_string_object__)) - Executes SQL and returns the first column of the first row of the first result set.
 - [ExecuteNonQuery](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteNonQuery(DbContext_string_object__)) - Executes SQL and returns number of rows affected
 - [ExecuteScalarStream](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteScalarStream(DbContext_string_object__)) - Executes SQL and returns a Stream directly from the database (great for efficiently retrieving BLOBs).
-- [ExecuteDynamicList<T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList_T_(DbContext_string_IEnumerable_string__object__)) - Executes SQL and returns a list of T's with additional columns in an object[] (roughly equivelant of EFCore's shadow properties).
+- [ExecuteDynamicList&lt;T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList_T_(DbContext_string_IEnumerable_string__object__)) - Executes SQL and returns a list of T's with additional columns in an object[] (roughly equivelant of EFCore's shadow properties).
 - [ExecuteDynamicList](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList(DbContext_IEnumerable_Type__string_IEnumerable_string__object__)) - Executes SQL and returns a list of objects with additional columns in an object[], and additional object lists.
 
-- [LoadDataset<T1, T2>(IDbCommand, ...)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataset_T1_T2_(DbContext_DbCommand_string_Action_T1_IList_T2___string)) - Loads a list of T1's each with a list of T2 child rows
+Less commonly used methods:
+- [LoadDataset&lt;T1, T2>(IDbCommand, ...)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataset_T1_T2_(DbContext_DbCommand_string_Action_T1_IList_T2___string)) - Loads a list of T1's each with a list of T2 child rows
 - [CreateCommand(string, params object[])](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_CreateCommand(DbContext_string_object__)) - Convinence method to create a IDbCommand object
 - [AddParameterValue(string, bool)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_bool)) - Adds a bool parameter to an IDbCommand
 - [AddParameterValue(string, string)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_string)) - Adds a string parameter to an IDbCommand
@@ -137,6 +138,7 @@ Some highlights:
 - [AddParameterValue(string, DBNull)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_DBNull)) - Adds a null value parameter to an IDbCommand
 - [AddParameterValue(string, object)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_object)) - Adds a object parameter to an IDbCommand
 
+Methods to help migrate classic ADO.NET code:
 - [LoadDataTable(string, params object[])](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataTable(DbContext_string)) - Loads a classic ADO.NET DataTable
 - [LoadDataTable(IDbCommand)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataTable(DbContext_string)) - Loads a classic ADO.NET DataTable
 - [LoadDataSet(IDbCommand)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataset(DbContext_DbCommand)) - Loads a classic ADO.NET DataSet
