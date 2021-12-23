@@ -29,7 +29,7 @@
     <DefaultDocumentationFileNameMode>Name</DefaultDocumentationFileNameMode>
     <DefaultDocumentationRemoveFileExtensionFromLinks>true</DefaultDocumentationRemoveFileExtensionFromLinks>
     <DefaultDocumentationGeneratedAccessModifiers>Public</DefaultDocumentationGeneratedAccessModifiers>
-    <DefaultDocumentationIgnoreLineBreak>true</DefaultDocumentationIgnoreLineBreak>
+    <DefaultDocumentationIgnoreLineBreak>True</DefaultDocumentationIgnoreLineBreak>
   </PropertyGroup>
 
 </Project>
