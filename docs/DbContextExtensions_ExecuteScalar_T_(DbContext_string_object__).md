@@ -20,7 +20,7 @@ The SQL to be executed.
   
 <a name='RobertsDbContextExtensions_DbContextExtensions_ExecuteScalar_T_(Microsoft_EntityFrameworkCore_DbContext_string_object__)_Parameters'></a>
 `Parameters` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')[[]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System.Array')  
-A list of values to be passed as parameters. See [How to pass parameters](https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md 'https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md')
+A list of values to be passed as parameters. See [Passing parameters](https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md 'https://github.com/rmacfadyen/RobertsDbContextExtensions/blob/master/Parameters.md')
   
 #### Returns
 [T](DbContextExtensions_ExecuteScalar_T_(DbContext_string_object__)#RobertsDbContextExtensions_DbContextExtensions_ExecuteScalar_T_(Microsoft_EntityFrameworkCore_DbContext_string_object__)_T 'RobertsDbContextExtensions.DbContextExtensions.ExecuteScalar&lt;T&gt;(Microsoft.EntityFrameworkCore.DbContext, string, object[]).T')  
