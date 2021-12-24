@@ -137,11 +137,3 @@ Methods for creating IDbCommand instances:
 - [AddParameterValue(string, DBNull)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_DBNull)) - Adds a null value parameter to an IDbCommand
 - [AddParameterValue(string, object)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_object)) - Adds a object parameter to an IDbCommand
 
-Less commonly used methods:
-- [LoadDataset&lt;T1, T2>(IDbCommand, ...)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataset_T1_T2_(DbContext_DbCommand_string_Action_T1_IList_T2___string)) - Loads a list of T1's each with a list of T2 child rows
-
-Methods to help migrate classic ADO.NET code:
-- [LoadDataTable(string, params object[])](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataTable(DbContext_string)) - Loads a classic ADO.NET DataTable
-- [LoadDataTable(IDbCommand)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataTable(DbContext_string)) - Loads a classic ADO.NET DataTable
-- [LoadDataSet(IDbCommand)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_LoadDataset(DbContext_DbCommand)) - Loads a classic ADO.NET DataSet
-
