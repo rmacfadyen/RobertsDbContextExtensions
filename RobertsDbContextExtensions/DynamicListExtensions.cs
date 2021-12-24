@@ -72,6 +72,33 @@ namespace RobertsDbContextExtensions
 
 
         /// <summary>
+        /// A dynamic list is a regular POCO object with one property defined
+        /// as an object[]. This array will be populated with column values
+        /// as passed in the DynmaicColumnNames list (in the same order). The
+        /// other properties on the object will be populated as normal.
+        /// </summary>
+        /// <see cref="ExecuteDynamicList(DbContext, IEnumerable{Type}, string, IEnumerable{string}, object[])"/>
+        /// <typeparam name="T">The type the first result set should be mapped to. Must include an object[] property to 
+        /// hold the list of values for the columns from DynamicColumnNames.</typeparam>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <param name="DynamicColumnNames">A list of columns names who's values will populate
+        /// the first object[] property on T.</param>
+        /// <returns>The first result set mapped to a list of T's, with the columns
+        /// specified as dynamic loaded into the first object[] property on T.
+        /// </returns>
+        public static IList<T> ExecuteDynamicList<T>(
+            this DbContext ctx, IDbCommand cmd, IEnumerable<string> DynamicColumnNames
+        )
+        {
+            return ctx.ExecuteReaderFromCmd(
+                Helpers.ListFromDbReader<T>,
+                DynamicColumnNames,
+                cmd
+            );
+        }
+
+        /// <summary>
         /// When you have a query that consists of several result sets,
         /// and the first result contains columns that are not known in 
         /// advanced, then ExecuteDynamicList is your ticket.
@@ -93,10 +120,29 @@ namespace RobertsDbContextExtensions
             params object[] Parameters
         )
         {
-            Helpers.EnsureConnectionOpen(ctx);
-
             using var cmd = ctx.CreateCommand(Sql, Parameters);
-            using var dbReader = cmd.ExecuteReader();
+
+            return ExecuteDynamicList(ctx, Types, DynamicColumnNames, cmd);
+        }
+
+
+        /// <summary>
+        /// When you have a query that consists of several result sets,
+        /// and the first result contains columns that are not known in 
+        /// advanced, then ExecuteDynamicList is your ticket.
+        /// </summary>
+        /// <param name="ctx">The DbContext to execute the SQL on.</param>
+        /// <param name="Types">A list of Types the query's result sets will be
+        /// mapped to. The first type must have an object[] property to hold
+        /// the dynamic column values.</param>
+        /// <param name="cmd">The command to be executed.</param>
+        /// <param name="DynamicColumnNames">A list of columns names who's values will populate
+        /// the first object[] property on T.</param>
+        /// <returns>A list of lists. Each list corresponds to the type from the Types parameter.</returns>
+        private static IList<object> ExecuteDynamicList(DbContext ctx, IEnumerable<Type> Types, IEnumerable<string> DynamicColumnNames, DbCommand cmd)
+        {
+            Helpers.EnsureConnectionOpen(ctx);
+            var dbReader = cmd.ExecuteReader();
             var AllResults = new List<object>();
 
             //
