@@ -3,9 +3,6 @@
 If you want read data using an Entity Framework Core (EFCore) DbContext 
 into arbitrary plain old C# objects (POCO) then you're in the right place.
 
-If you just need to execute arbitrary SQL statements, eg. create table, 
-using an EFCore DbContext then you're in the right place.
-
 The original inspiration for these extensions came from ADO.NET's ExecuteScalar(..) method.
 It was clear that with a little generic magic it could have been so much easier to use. 
 The same for constructing command objects, just so many of the same steps repeated over 
