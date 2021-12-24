@@ -9,7 +9,7 @@ using an EFCore DbContext then you're in the right place.
 
 ### Documentation
 
-You can review the [full documentation here](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions).
+You can review the [full documentation here](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/RobertsDbContextExtensions).
 
 ### Highlights
 
