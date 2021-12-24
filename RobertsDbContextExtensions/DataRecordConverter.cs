@@ -185,6 +185,8 @@ namespace RobertsDbContextExtensions
                 }
             }
         }
+
+
         /// <summary>
         /// Populate the given object with values from the datareader's current record
         /// </summary>
