@@ -13,7 +13,7 @@ namespace RobertsDbContextExtensions
     /// <summary>
     /// Provides several extension methods relating to IDbCommands
     /// </summary>
-    public static class CommandExtensions
+    public static class IDbCommandExtensions
     {
 
         #region IDbCommand execution extensions
