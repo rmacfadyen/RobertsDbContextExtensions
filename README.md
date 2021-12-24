@@ -1,10 +1,33 @@
 ## Robert's DbContext Extensions
 
-If you just need to read data from a database server via Entity Framework Core (EFCore) 
+If you want read data using an Entity Framework Core (EFCore) DbContext 
 into arbitrary plain old C# objects (POCO) then you're in the right place.
 
-If you just need to execute arbitrary SQL statements on a database server via EFCore
-then you're in the right place.
+If you just need to execute arbitrary SQL statements, eg. create table, 
+using an EFCore DbContext then you're in the right place.
+
+
+### Documentation
+
+You can review the [full documentation here](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions).
+
+### Highlights
+
+- [ExecuteList&lt;T1...T6>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteList_T_(DbContext_string_object__)) - Loads a list of values from the database, up to 6 lists (T1..T6).
+- [ExecuteDynamicList&lt;T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList_T_(DbContext_string_IEnumerable_string__object__)) - Executes SQL and returns a list of T's with additional columns in an object[] (roughly equivelant of EFCore's shadow properties).
+- [ExecuteDynamicList](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList(DbContext_IEnumerable_Type__string_IEnumerable_string__object__)) - Executes SQL and returns a list of objects with additional columns in an object[], and additional object lists.
+- [ExecuteScalar&lt;T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteNonQuery(DbContext_string_object__)) - Executes SQL and returns the first column of the first row of the first result set.
+- [ExecuteNonQuery](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteNonQuery(DbContext_string_object__)) - Executes SQL and returns number of rows affected
+- [ExecuteScalarStream](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteScalarStream(DbContext_string_object__)) - Executes SQL and returns a Stream directly from the database (great for efficiently retrieving BLOBs).
+
+### IDbCommand helpers
+- [CreateCommand(string, params object[])](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_CreateCommand(DbContext_string_object__)) - Convinence method to create a IDbCommand object
+- [AddParameterValue(string, bool)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_bool)) - Adds a bool parameter to an IDbCommand
+- [AddParameterValue(string, string)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_string)) - Adds a string parameter to an IDbCommand
+- [AddParameterValue(string, int)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_int)) - Adds an int parameter to an IDbCommand
+- [AddParameterValue(string, DBNull)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_DBNull)) - Adds a null value parameter to an IDbCommand
+- [AddParameterValue(string, object)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_object)) - Adds a object parameter to an IDbCommand
+
 
 
 ### Sample Code
@@ -114,26 +137,3 @@ Execute arbitrary SQL (to alter a table, delete rows, insert rows, etc):
         return RowsAffected <> 0;
     }
 ```
-
-
-### Documentation
-
-You can review the [full documentation](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions).
-
-Some highlights:
-
-- [ExecuteList&lt;T1...T6>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteList_T_(DbContext_string_object__)) - Loads a list of values from the database, up to 6 lists (T1..T6).
-- [ExecuteScalar&lt;T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteNonQuery(DbContext_string_object__)) - Executes SQL and returns the first column of the first row of the first result set.
-- [ExecuteNonQuery](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteNonQuery(DbContext_string_object__)) - Executes SQL and returns number of rows affected
-- [ExecuteScalarStream](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteScalarStream(DbContext_string_object__)) - Executes SQL and returns a Stream directly from the database (great for efficiently retrieving BLOBs).
-- [ExecuteDynamicList&lt;T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList_T_(DbContext_string_IEnumerable_string__object__)) - Executes SQL and returns a list of T's with additional columns in an object[] (roughly equivelant of EFCore's shadow properties).
-- [ExecuteDynamicList](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList(DbContext_IEnumerable_Type__string_IEnumerable_string__object__)) - Executes SQL and returns a list of objects with additional columns in an object[], and additional object lists.
-
-Methods for creating IDbCommand instances:
-- [CreateCommand(string, params object[])](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_CreateCommand(DbContext_string_object__)) - Convinence method to create a IDbCommand object
-- [AddParameterValue(string, bool)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_bool)) - Adds a bool parameter to an IDbCommand
-- [AddParameterValue(string, string)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_string)) - Adds a string parameter to an IDbCommand
-- [AddParameterValue(string, int)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_int)) - Adds an int parameter to an IDbCommand
-- [AddParameterValue(string, DBNull)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_DBNull)) - Adds a null value parameter to an IDbCommand
-- [AddParameterValue(string, object)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_object)) - Adds a object parameter to an IDbCommand
-
