@@ -15,8 +15,6 @@ namespace RobertsDbContextExtensions
     /// </summary>
     public static class DynamicListExtensions
     {
-        #region DynamicList
-
         /// <summary>
         /// A dynamic list is a regular POCO object with one property defined
         /// as an object[]. This array will be populated with column values
@@ -139,7 +137,7 @@ namespace RobertsDbContextExtensions
         /// <param name="DynamicColumnNames">A list of columns names who's values will populate
         /// the first object[] property on T.</param>
         /// <returns>A list of lists. Each list corresponds to the type from the Types parameter.</returns>
-        private static IList<object> ExecuteDynamicList(DbContext ctx, IEnumerable<Type> Types, IEnumerable<string> DynamicColumnNames, DbCommand cmd)
+        public static IList<object> ExecuteDynamicList(DbContext ctx, IEnumerable<Type> Types, IEnumerable<string> DynamicColumnNames, DbCommand cmd)
         {
             Helpers.EnsureConnectionOpen(ctx);
             var dbReader = cmd.ExecuteReader();
@@ -165,9 +163,5 @@ namespace RobertsDbContextExtensions
 
             return AllResults;
         }
-
-        #endregion
-
-
     }
 }
