@@ -8,14 +8,13 @@ using an EFCore DbContext then you're in the right place.
 
 The original inspiration for these extensions came from ADO.NET's ExecuteScalar(..) method.
 It was clear that with a little generic magic it could have been so much easier to use. 
-Similarly, how data tables were constructed was fairly pondorous when almost always all
-that was desired was a simple IList of plain old C# objects.
+The same for constructing command objects, just so many of the same steps repeated over 
+and over. Data tables are also fairly pondorous, especially when a simple IList<T> would
+be so much easier to deal with.
 
-Similarly constructing command objects involved a lot of the same steps over and over. 
-A simpler means to create a command object an populate its parameters is necesary.
+These extensions were created to provide breviety, simplicity, conciseness to data access 
+using an Entity Framework Core DbContext object.
 
-These extensions build on those fundementals. ExecuteList<T>, ExecuteList<T1, T2>, all the way 
-up to six inidividual result sets. And you can use command objects or just plain old SQL strings.
 
 ### Documentation
 
