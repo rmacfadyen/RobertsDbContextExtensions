@@ -61,12 +61,12 @@ namespace RobertsDbContextExtensionsTests
         [Fact]
         public void DisplayNameTests()
         {
-            Assert.Equal("Int32?", DataRecordConverter.GetDisplayName(typeof(int?)));
-            Assert.Equal("List<Int32>", DataRecordConverter.GetDisplayName(typeof(List<int>)));
-            Assert.Equal("Int32[]", DataRecordConverter.GetDisplayName(typeof(int[])));
-            Assert.Equal("Int32[][]", DataRecordConverter.GetDisplayName(typeof(int[][])));
-            Assert.Equal("Int32[,]", DataRecordConverter.GetDisplayName(typeof(int[,])));
-            Assert.Equal("Array[]", DataRecordConverter.GetDisplayName(typeof(Array[])));
+            Assert.Equal("Int32?", FastRecordConverter.GetDisplayName(typeof(int?)));
+            Assert.Equal("List<Int32>", FastRecordConverter.GetDisplayName(typeof(List<int>)));
+            Assert.Equal("Int32[]", FastRecordConverter.GetDisplayName(typeof(int[])));
+            Assert.Equal("Int32[][]", FastRecordConverter.GetDisplayName(typeof(int[][])));
+            Assert.Equal("Int32[,]", FastRecordConverter.GetDisplayName(typeof(int[,])));
+            Assert.Equal("Array[]", FastRecordConverter.GetDisplayName(typeof(Array[])));
         }
 
 

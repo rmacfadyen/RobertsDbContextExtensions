@@ -78,7 +78,7 @@
             }
             else
             {
-                ColumnsToRead = DataRecordConverter.GetColumnMapping(dbDataReader, TypeOfT);
+                ColumnsToRead = FastRecordConverter.GetColumnMapping(dbDataReader, TypeOfT);
                 RowConverter = ReadObject<T>;
 
                 if (DynamicColumns == null || !DynamicColumns.Any())
@@ -87,7 +87,7 @@
                 }
                 else
                 {
-                    DynamicColumnsToRead = DataRecordConverter.GetDynamicColumnMapping(dbDataReader, TypeOfT, DynamicColumns);
+                    DynamicColumnsToRead = FastRecordConverter.GetDynamicColumnMapping(dbDataReader, TypeOfT, DynamicColumns);
                 }
             }
 
@@ -133,7 +133,7 @@
             }
             else
             {
-                ColumnsToRead = DataRecordConverter.GetColumnMapping(dbDataReader, TypeOfT);
+                ColumnsToRead = FastRecordConverter.GetColumnMapping(dbDataReader, TypeOfT);
                 RowConverter = ReadObject;
 
                 if (DynamicColumns == null || !DynamicColumns.Any())
@@ -142,7 +142,7 @@
                 }
                 else
                 {
-                    DynamicColumnsToRead = DataRecordConverter.GetDynamicColumnMapping(dbDataReader, TypeOfT, DynamicColumns);
+                    DynamicColumnsToRead = FastRecordConverter.GetDynamicColumnMapping(dbDataReader, TypeOfT, DynamicColumns);
                 }
             }
 
@@ -222,11 +222,11 @@
         /// <returns></returns>
         private static T ReadPrimitiveOrString<T>(IDataRecord dr, Type TypeOfT, IList<PropertyDetails> p, (FastPropertySetter, IList<int>)? d)
         {
-            return (T)DataRecordConverter.ReadValue(dr, 0, TypeOfT);
+            return (T)FastRecordConverter.ReadValue(dr, 0, TypeOfT);
         }
         private static object ReadPrimitiveOrString(IDataRecord dr, Type TypeOfT, IList<PropertyDetails> p, (FastPropertySetter, IList<int>)? d)
         {
-            return DataRecordConverter.ReadValue(dr, 0, TypeOfT);
+            return FastRecordConverter.ReadValue(dr, 0, TypeOfT);
         }
 
         /// <summary>
@@ -251,11 +251,11 @@
             //
             var ThisActivator = FastActivator<T>.Instance;
             var o = ThisActivator() ?? throw new InvalidOperationException("FastActivator failed to create instance");
-            DataRecordConverter.ReadObject(dr, ColumnsToRead, o);
+            FastRecordConverter.ReadObject(dr, ColumnsToRead, o);
 
             if (DynamicFields.HasValue)
             {
-                var DynamicObject = DataRecordConverter.ReadDynamicObject(dr, DynamicFields.Value.Item2);
+                var DynamicObject = FastRecordConverter.ReadDynamicObject(dr, DynamicFields.Value.Item2);
                 DynamicFields.Value.Item1.Set(o, DynamicObject);
             }
 
@@ -280,11 +280,11 @@
             //
             // Copy the columns to the newly create object
             //
-            DataRecordConverter.ReadObject(dr, ColumnsToRead, o);
+            FastRecordConverter.ReadObject(dr, ColumnsToRead, o);
 
             if (DynamicFields.HasValue)
             {
-                var DynamicObject = DataRecordConverter.ReadDynamicObject(dr, DynamicFields.Value.Item2);
+                var DynamicObject = FastRecordConverter.ReadDynamicObject(dr, DynamicFields.Value.Item2);
                 DynamicFields.Value.Item1.Set(o, DynamicObject);
             }
 
