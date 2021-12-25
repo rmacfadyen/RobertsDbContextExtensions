@@ -1,8 +1,40 @@
 ﻿namespace RobertsDbContextExtensions
 {
     /// <summary>
-    /// Extensions that load a lists that includes dynamic columns
+    /// Extensions that load a lists that includes dynamic columns. The key concept
+    /// behind ExecuteDynamicList is where the list of fields retrived by the
+    /// query can vary at runtime. Because the list is dynamic at runtime a simple
+    /// POCO class by itself isn't sufficient.
+    /// 
+    /// To solve the problem ExecuteDynamicList relies on the POCO containing a
+    /// plain array of object values. For example:
     /// </summary>
+    /// <example>
+    /// public class MyDynamicData
+    /// {
+    ///     public string FieldOne { get; set; } // always included in the query
+    ///     public object[] AdditionalFields { get; set; } // populated based on a list of field names
+    /// }
+    /// 
+    /// public ILIst&lt;MyDynamicData> GetData(bool IncludeAdditionalFields)
+    /// {
+    ///     string Sql;
+    ///     string[] AdditionalFields;
+    ///     
+    ///     if (IncludeAdditionalFields)
+    ///     {
+    ///         Sql = "select FieldOne, FieldTwo, FieldThree from MyTable";
+    ///         AdditionalFields = new[] { "FieldTwo", "FieldThree" };
+    ///     }
+    ///     else
+    ///     {
+    ///         Sql = "select FieldOne, FieldTwo, FieldThree from MyTable";
+    ///         AdditionalFields = null;
+    ///     }
+    ///    
+    ///     return ctx.ExecuteDynamicList(Sql, AdditionalColumns);
+    /// }
+    /// </example>
     public static class ExtensionsForExecuteDynamicList
     {
         /// <summary>
