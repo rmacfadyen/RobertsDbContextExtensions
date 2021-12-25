@@ -25,7 +25,7 @@ namespace RobertsDbContextExtensionsTests
         [Fact]
         public void StreamTest()
         {
-            using var s = ctx.ExecuteScalarStream("select bytearray1 from TableOne where OneId = 1");
+            using var s = ctx.ExecuteStream("select bytearray1 from TableOne where OneId = 1");
             var ms = new MemoryStream();
             s.CopyTo(ms);
             var b = ms.ToArray();
@@ -39,7 +39,7 @@ namespace RobertsDbContextExtensionsTests
         [Fact]
         public void StreamTestUnsupported()
         {
-            using var s = ctx.ExecuteScalarStream("select bytearray1 from TableOne where OneId = 1");
+            using var s = ctx.ExecuteStream("select bytearray1 from TableOne where OneId = 1");
 
             Assert.False(s.CanWrite);
 
