@@ -1,8 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Storage;
+global using System.Collections.Concurrent;
+global using System.Data;
+global using System.Data.Common;
+global using System.Reflection;
+global using System.Runtime.CompilerServices;
+global using System.Linq.Expressions;
+
+[assembly: InternalsVisibleTo("RobertsDbContextExtensionsTests")]
 
 namespace RobertsDbContextExtensions
 {
