@@ -41,40 +41,38 @@ Rigorous performance benchmarking is beyond the scope of this project. The perfo
 testing undertaken was almost solely as a sanity check. 
 
 That said, here's some numbers (average of 10 runs on an idle development machine against
-SQL Express on solid state drives):
+SQL Express on solid state drives). Three tests were used: reading one random row from
+a table of 25, reading 4 random row, and finally reading the entire table (25 rows). 
+See the QuickDirtyBenchmark project for precise details.
 
 | Library | Test | Elapsed |
 | ------- | ---- | --------------- |
-| Dapper  | 1 record | 9.55s | 
-| Dapper  | 4 records | 11.46s | 
-| Dapper | 25 records | 15.20s | 
-| EFCore | 1 record | 14.00s | 
-| EFCore | 4 records | 16.89s | 
-| EFCore | 25 records | 17.70s | 
-| Roberts | 1 record | 8.07s |
-| Roberts | 4 records | 10.19s |
-| Roberts | 25 records | 16.86s | 
+| Dapper  | 1 row | 9.55s | 
+| Dapper  | 4 rows | 11.46s | 
+| Dapper | 25 rows | 15.20s | 
+| EFCore | 1 row | 14.00s | 
+| EFCore | 4 rows | 16.89s | 
+| EFCore | 25 rows | 17.70s | 
+| Roberts | 1 row | 8.07s |
+| Roberts | 4 rows | 10.19s |
+| Roberts | 25 rows | 16.86s | 
 
-There are three tests; "1 record" reads one random record out of 25, "4 records" reads
-4 random records, and "25 records" reads 25 records (the full table). See th QuickDirtyBenchmark
-project for precise details.
-
-One odd thing stands out... our "25 records" is 1.62 seconds slower than Dapper. This doesn't make
-a lot of sense, especially since the 4 record times we're ahead by 1.27 seconds.
+One odd thing stands out... our "25 rows" is 1.62 seconds slower than Dapper. This doesn't make
+a lot of sense, especially since the 4 row times we're ahead by 1.27 seconds.
 
 And exceptionally odd is what happens when the tests are run against SQL LocalDB:
 
 | Library | Test | Elapsed |
 | ------- | ---- | --------------- |
-| Dapper | 1 record | 24.58 |
-| Dapper | 4 records | 26.06 |
-| Dapper | 25 records | 30.22 |
-| EFCore | 1 record | 29.70 |
-| EFCore | 4 records | 34.03 |
-| EFCore | 25 records | 34.26 |
-| Roberts | 1 record | 7.70 |
-| Roberts | 4 records | 9.52 |
-| Roberts | 25 records | 15.79 |
+| Dapper | 1 row | 24.58 |
+| Dapper | 4 rows | 26.06 |
+| Dapper | 25 rows | 30.22 |
+| EFCore | 1 row | 29.70 |
+| EFCore | 4 rows | 34.03 |
+| EFCore | 25 rows | 34.26 |
+| Roberts | 1 row | 7.70 |
+| Roberts | 4 rows | 9.52 |
+| Roberts | 25 rows | 15.79 |
 
 The times for EFCore and Dapper have more than doubled by our times have decreased!
 Additional investigation is required.
