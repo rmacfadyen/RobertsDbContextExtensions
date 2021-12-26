@@ -42,8 +42,8 @@ testing undertaken was almost solely as a sanity check.
 
 That said, here's some numbers (average of 10 runs on an idle development machine against
 SQL Express on solid state drives). Three tests were used: reading one random row from
-a table of 25, reading 4 random row, and finally reading the entire table (25 rows). 
-See the QuickDirtyBenchmark project for precise details.
+a table of 25, reading 4 random row, and finally reading the entire table of 25 rows. 
+See the [QuickDirtyBenchmark](https://github.com/rmacfadyen/RobertsDbContextExtensions/tree/master/QuickDirtyBenchmark) project for precise details.
 
 | Library | Test | Elapsed |
 | ------- | ---- | --------------- |
