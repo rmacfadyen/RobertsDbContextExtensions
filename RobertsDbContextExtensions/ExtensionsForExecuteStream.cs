@@ -7,7 +7,8 @@
     /// a BLOB without loading it entirely into memory. 
     /// 
     /// Perfect when dealing with files that have been stored in a database 
-    /// and need to be beamed down to a client (eg. browser).
+    /// and need to be beamed down to a client (eg. browser) without requiring
+    /// the webserver to hold the entire BLOB in memory.
     /// </summary>
     public static class ExtensionsForExecuteStream
     {
