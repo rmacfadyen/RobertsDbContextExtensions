@@ -24,7 +24,7 @@ You can review the [full documentation here](https://rmacfadyen.github.io/Robert
 - [ExecuteDynamicList](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteDynamicList(DbContext_IEnumerable_Type__string_IEnumerable_string__object__)) - Executes SQL and returns a list of objects with additional columns in an object[], and additional object lists.
 - [ExecuteScalar&lt;T>](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteNonQuery(DbContext_string_object__)) - Executes SQL and returns the first column of the first row of the first result set.
 - [ExecuteNonQuery](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteNonQuery(DbContext_string_object__)) - Executes SQL and returns number of rows affected
-- [ExecuteScalarStream](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteScalarStream(DbContext_string_object__)) - Executes SQL and returns a Stream directly from the database (great for efficiently retrieving BLOBs).
+- [ExecuteStream](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_ExecuteScalarStream(DbContext_string_object__)) - Executes SQL and returns a Stream directly from the database (great for efficiently retrieving BLOBs).
 
 ### IDbCommand helpers
 - [CreateCommand(string, params object[])](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_CreateCommand(DbContext_string_object__)) - Convinence method to create a IDbCommand object
