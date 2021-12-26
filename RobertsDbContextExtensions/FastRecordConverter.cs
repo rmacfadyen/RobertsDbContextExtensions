@@ -24,13 +24,18 @@
         public static object ReadValue(IDataRecord dataRecord, int Ordinal, Type TypeOfT)
         {
             var Value = dataRecord.GetValue(Ordinal);
-            var ValueTypeOf = Value.GetType();
+            var ValueTypeOf = dataRecord.GetFieldType(Ordinal);
 
             //
             // If the source type is the same as the destination type we're good
             //
             if (ValueTypeOf == TypeOfT)
             {
+                if (Value == DBNull.Value)
+                {
+                    return null;
+                }
+
                 return Value;
             }
 

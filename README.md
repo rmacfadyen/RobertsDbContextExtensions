@@ -35,6 +35,52 @@ You can review the [full documentation here](https://rmacfadyen.github.io/Robert
 - [AddParameterValue(string, object)](https://rmacfadyen.github.io/RobertsDbContextExtensions/docs/DbContextExtensions_AddParameterValue(IDbCommand_string_object)) - Adds a object parameter to an IDbCommand
 
 
+### Performance Comparisons
+
+Rigorous performance benchmarking is beyond the scope of this project. The performance
+testing undertaken was almost solely as a sanity check. 
+
+That said, here's some numbers (average of 10 runs on an idle development machine against
+SQL Express on solid state drives):
+
+| Library | Test | Elapsed |
+| ------- | ---- | --------------- |
+| Dapper  | 1 record | 9.55s | 
+| Dapper  | 4 records | 11.46s | 
+| Dapper | 25 records | 15.20s | 
+| EFCore | 1 record | 14.00s | 
+| EFCore | 4 records | 16.89s | 
+| EFCore | 25 records | 17.70s | 
+| Roberts | 1 record | 8.07s |
+| Roberts | 4 records | 10.19s |
+| Roberts | 25 records | 16.86s | 
+
+There are three tests; "1 record" reads one random record out of 25, "4 records" reads
+4 random records, and "25 records" reads 25 records (the full table). See th QuickDirtyBenchmark
+project for precise details.
+
+One odd thing stands out... our "25 records" is 1.62 seconds slower than Dapper. This doesn't make
+a lot of sense, especially since the 4 record times we're ahead by 1.27 seconds.
+
+And exceptionally odd is what happens when the tests are run against SQL LocalDB:
+
+| Library | Test | Elapsed |
+| ------- | ---- | --------------- |
+| Dapper | 1 record | 24.58 |
+| Dapper | 4 records | 26.06 |
+| Dapper | 25 records | 30.22 |
+| EFCore | 1 record | 29.70 |
+| EFCore | 4 records | 34.03 |
+| EFCore | 25 records | 34.26 |
+| Roberts | 1 record | 7.70 |
+| Roberts | 4 records | 9.52 |
+| Roberts | 25 records | 15.79 |
+
+The times for EFCore and Dapper have more than doubled by our times have decreased!
+Additional investigation is required.
+
+The last bit of weirdness is that Dapper would fail with an unexpected exception
+when reading uint or ushort. Switched these to int and short so the test would run.
 
 ### Sample Code
 Here's how you would read a single record from a Customer table:
