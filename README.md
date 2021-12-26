@@ -74,11 +74,13 @@ And exceptionally odd is what happens when the tests are run against SQL LocalDB
 | Roberts | 4 rows | 9.52 |
 | Roberts | 25 rows | 15.79 |
 
-The times for EFCore and Dapper have more than doubled by our times have decreased!
-Additional investigation is required.
+The times for EFCore and Dapper have more than doubled! But our times have decreased!
+**Additional investigation is required**.
 
 The last bit of weirdness is that Dapper would fail with an unexpected exception
-when reading uint or ushort. Switched these to int and short so the test would run.
+when reading uint or ushort. This is an 
+[existing Dapper issue](https://github.com/DapperLib/Dapper/issues/1164). 
+Switched these to int and short so the test would run.
 
 ### Sample Code
 Here's how you would read a single record from a Customer table:
