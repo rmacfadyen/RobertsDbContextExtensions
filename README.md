@@ -1,6 +1,6 @@
 ## Robert's DbContext Extensions
 
-If you want read data using an Entity Framework Core (EFCore) DbContext 
+If you want to read data using an Entity Framework Core (EFCore) DbContext 
 into arbitrary plain old C# objects (POCO) then you're in the right place.
 
 The original inspiration for these extensions came from ADO.NET's ExecuteScalar(..) method.
